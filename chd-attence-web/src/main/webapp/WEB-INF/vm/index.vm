@@ -1,12 +1,12 @@
 <!doctype html>
     <meta charset="UTF-8">
     <title>长安大学点名系统</title>
-    <script src="${pageContext.request.contextPath}/static/js/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/static/js/jquery.easyui.min.js"></script>
-    <script src="${pageContext.request.contextPath}/static/js/easyui-lang-zh_CN.js"></script>
+    <script src="${request.contextPath}/static/js/jquery.min.js"></script>
+    <script src="${request.contextPath}/static/js/jquery.easyui.min.js"></script>
+    <script src="${request.contextPath}/static/js/easyui-lang-zh_CN.js"></script>
     <!-- 引入css文件，不限顺序 -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/themes/default/easyui.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/themes/icon.css" type="text/css">
+    <link rel="stylesheet" href="${request.contextPath}/static/css/themes/default/easyui.css" type="text/css">
+    <link rel="stylesheet" href="${request.contextPath}/static/css/themes/icon.css" type="text/css">
 
 
 

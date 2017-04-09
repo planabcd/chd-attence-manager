@@ -4,3 +4,4 @@
 #end
 $date
 $abc
+服务器路径 ${request.contextPath}

@@ -15,20 +15,5 @@
             <artifactId>chd-attence-service</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
-       <!-- 申请单合同相关-->
-        <dependency>
-            <groupId>com.wangyin.boss</groupId>
-            <artifactId>product-enter-api</artifactId>
-            <version>0.2.3</version>
-        </dependency>
-
-       <!-- 续签协议相关-->
-        <dependency>
-            <groupId>com.wangyin.boss</groupId>
-            <artifactId>boss-merchant-compact-api</artifactId>
-            <version>0.1.0-SNAPSHOT</version>
-        </dependency>
-
     </dependencies>
 </project>

@@ -30,4 +30,9 @@ public class TestStudentController {
         model.addAttribute("date",new Date());
         return "test";
     }
+
+    @RequestMapping("/")
+    public String index(Model model){
+        return "index";
+    }
 }

@@ -13,6 +13,9 @@
 	</context:component-scan>
 	<!--开启ResponseBody-->
 	<mvc:annotation-driven  />
+
+	<!--静态资源-->
+	<mvc:resources mapping="/static/**" location="/static/" />
 	<!-- 定义试图解析器 -->
 	<!-- template view -->
 	<bean id="velocityConfig"
