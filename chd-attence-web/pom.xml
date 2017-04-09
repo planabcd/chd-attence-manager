@@ -1,0 +1,34 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <artifactId>chd-attence-manager</artifactId>
+        <groupId>cn.sshpro</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>chd-attence-web</artifactId>
+    <packaging>war</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>cn.sshpro</groupId>
+            <artifactId>chd-attence-service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+       <!-- 申请单合同相关-->
+        <dependency>
+            <groupId>com.wangyin.boss</groupId>
+            <artifactId>product-enter-api</artifactId>
+            <version>0.2.3</version>
+        </dependency>
+
+       <!-- 续签协议相关-->
+        <dependency>
+            <groupId>com.wangyin.boss</groupId>
+            <artifactId>boss-merchant-compact-api</artifactId>
+            <version>0.1.0-SNAPSHOT</version>
+        </dependency>
+
+    </dependencies>
+</project>

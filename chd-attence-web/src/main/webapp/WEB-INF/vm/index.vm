@@ -1,0 +1,82 @@
+<!doctype html>
+    <meta charset="UTF-8">
+    <title>长安大学点名系统</title>
+    <script src="${pageContext.request.contextPath}/static/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/static/js/jquery.easyui.min.js"></script>
+    <script src="${pageContext.request.contextPath}/static/js/easyui-lang-zh_CN.js"></script>
+    <!-- 引入css文件，不限顺序 -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/themes/default/easyui.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/themes/icon.css" type="text/css">
+
+
+
+
+    <script type="text/javascript">
+        //动态添加一个标签页
+        function addTab(title, url,iframeName){
+            //重新加载数据
+            $('#tabs').tabs('close', title);
+            var content = "";
+            if(iframeName == undefined){
+                content = '<iframe scrolling="auto" frameborder="0"  src="'+url+'" style="width:100%;height:100%;"></iframe>';
+            }else{
+                content = '<iframe name="'+iframeName+'" scrolling="auto" frameborder="0"  src="'+url+'" style="width:100%;height:100%;"></iframe>';
+            }
+            $('#tabs').tabs('add',{
+                title:title,
+                content:content,
+                closable:true
+            });
+        };
+
+        $(function(){
+            $('#tt').tree({
+                onClick: function(node){
+                    if(node.attributes && node.attributes.url){
+                        addTab(node.text,node.attributes.url);
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+<body class="easyui-layout" style="background-color:#95B8E7">
+<div data-options="region:'west',title:'菜单',split:false" style="width:160px;">
+    <ul id="tt" class="easyui-tree">
+        <li>
+            <span>教师信息管理</span>
+            <ul>
+                <li data-options="attributes:{'url':'${request.contextPath}/plugin/list/all'}">
+                    <span>教师列表</span>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <span>学生信息管理</span>
+            <ul>
+                <li data-options="attributes:{'url':'${request.contextPath}/plugin/group/list'}">
+                    <span>学生列表</span>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div data-options="region:'north'" style="height:50px;background-color:#47acf2">
+    <div style="font-size: 25px;text-align: left;margin-top:10px;margin-left:20px;color:white;font-weight:bold;">长安大学点名系统</div>
+    <div style="text-align: right;margin-top:20px;float:right;width:30%;margin-right:20px;color:white;">
+        欢迎,xxx
+        <a href="#">
+            修改密码
+        </a>
+        |
+        <a href="#">退出</a>
+        服务器路径:${request.contextPath}
+    </div>
+</div>
+<div data-options="region:'center'" style=";background:#eee;">
+    <div id='tabs' class="easyui-tabs" data-options="tabWidth:112,fit:true,border:false"></div>
+</div>
+
+</body>
+</html>
+

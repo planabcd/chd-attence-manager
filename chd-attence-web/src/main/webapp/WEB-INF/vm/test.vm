@@ -1,0 +1,6 @@
+#foreach($stu in $list)
+    你好,${stu.name},${stu.id},${stu.qq}
+    <br>
+#end
+$date
+$abc
