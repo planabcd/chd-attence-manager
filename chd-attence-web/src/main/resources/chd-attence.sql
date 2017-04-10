@@ -2,21 +2,21 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50540
+Source Server Version : 50717
 Source Host           : localhost:3306
 Source Database       : chd-attence
 
 Target Server Type    : MYSQL
-Target Server Version : 50540
+Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2017-04-10 22:20:55
+Date: 2017-04-10 18:25:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for course
+-- Table structure for `course`
 -- ----------------------------
 DROP TABLE IF EXISTS `course`;
 CREATE TABLE `course` (
@@ -30,7 +30,11 @@ CREATE TABLE `course` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for course_class
+-- Records of course
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `course_class`
 -- ----------------------------
 DROP TABLE IF EXISTS `course_class`;
 CREATE TABLE `course_class` (
@@ -41,7 +45,11 @@ CREATE TABLE `course_class` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for student
+-- Records of course_class
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `student`
 -- ----------------------------
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
@@ -55,10 +63,14 @@ CREATE TABLE `student` (
   `created` datetime DEFAULT NULL,
   `updated` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for student_attence
+-- Records of student
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `student_attence`
 -- ----------------------------
 DROP TABLE IF EXISTS `student_attence`;
 CREATE TABLE `student_attence` (
@@ -75,7 +87,11 @@ CREATE TABLE `student_attence` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for teacher
+-- Records of student_attence
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `teacher`
 -- ----------------------------
 DROP TABLE IF EXISTS `teacher`;
 CREATE TABLE `teacher` (
@@ -89,7 +105,11 @@ CREATE TABLE `teacher` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for teacher_attence
+-- Records of teacher
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `teacher_attence`
 -- ----------------------------
 DROP TABLE IF EXISTS `teacher_attence`;
 CREATE TABLE `teacher_attence` (
@@ -100,8 +120,8 @@ CREATE TABLE `teacher_attence` (
   `class_id` varchar(50) DEFAULT NULL,
   `teacher_name` varchar(20) DEFAULT NULL,
   `teacher_id` int(11) DEFAULT NULL,
-  `start_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `end_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `start_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `end_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `wifi_name` varchar(20) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `updated` datetime DEFAULT NULL,
@@ -109,7 +129,11 @@ CREATE TABLE `teacher_attence` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for teacher_class
+-- Records of teacher_attence
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `teacher_class`
 -- ----------------------------
 DROP TABLE IF EXISTS `teacher_class`;
 CREATE TABLE `teacher_class` (
@@ -118,3 +142,7 @@ CREATE TABLE `teacher_class` (
   `created` datetime DEFAULT NULL,
   `updated` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of teacher_class
+-- ----------------------------

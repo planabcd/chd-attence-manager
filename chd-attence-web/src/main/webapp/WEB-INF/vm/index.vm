@@ -1,45 +1,3 @@
-<!doctype html>
-    <meta charset="UTF-8">
-    <title>${systemName}</title>
-    <script src="${request.contextPath}/static/js/jquery.min.js"></script>
-    <script src="${request.contextPath}/static/js/jquery.easyui.min.js"></script>
-    <script src="${request.contextPath}/static/js/easyui-lang-zh_CN.js"></script>
-    <!-- 引入css文件，不限顺序 -->
-    <link rel="stylesheet" href="${request.contextPath}/static/css/themes/default/easyui.css" type="text/css">
-    <link rel="stylesheet" href="${request.contextPath}/static/css/themes/icon.css" type="text/css">
-
-
-
-
-    <script type="text/javascript">
-        //动态添加一个标签页
-        function addTab(title, url,iframeName){
-            //重新加载数据
-            $('#tabs').tabs('close', title);
-            var content = "";
-            if(iframeName == undefined){
-                content = '<iframe scrolling="auto" frameborder="0"  src="'+url+'" style="width:100%;height:100%;"></iframe>';
-            }else{
-                content = '<iframe name="'+iframeName+'" scrolling="auto" frameborder="0"  src="'+url+'" style="width:100%;height:100%;"></iframe>';
-            }
-            $('#tabs').tabs('add',{
-                title:title,
-                content:content,
-                closable:true
-            });
-        };
-
-        $(function(){
-            $('#tt').tree({
-                onClick: function(node){
-                    if(node.attributes && node.attributes.url){
-                        addTab(node.text,node.attributes.url);
-                    }
-                }
-            });
-        });
-    </script>
-</head>
 <body class="easyui-layout" style="background-color:#95B8E7">
 <div data-options="region:'west',title:'菜单',split:false" style="width:160px;">
     <ul id="tt" class="easyui-tree">
@@ -76,5 +34,30 @@
 </div>
 
 </body>
-</html>
-
+<script type="text/javascript">
+    //动态添加一个标签页
+    function addTab(title, url,iframeName){
+        //重新加载数据
+        $('#tabs').tabs('close', title);
+        var content = "";
+        if(iframeName == undefined){
+            content = '<iframe scrolling="auto" frameborder="0"  src="'+url+'" style="width:100%;height:100%;"></iframe>';
+        }else{
+            content = '<iframe name="'+iframeName+'" scrolling="auto" frameborder="0"  src="'+url+'" style="width:100%;height:100%;"></iframe>';
+        }
+        $('#tabs').tabs('add',{
+            title:title,
+            content:content,
+            closable:true
+        });
+    };
+    $(function(){
+        $('#tt').tree({
+            onClick: function(node){
+                if(node.attributes && node.attributes.url){
+                    addTab(node.text,node.attributes.url);
+                }
+            }
+        });
+    });
+</script>

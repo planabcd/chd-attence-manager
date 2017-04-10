@@ -1,1 +1,7 @@
+<!doctype html>
+<meta charset="UTF-8">
+<title>${systemName}</title>
+<head>
+    #parse("/layout/header.vm");
+</head>
 $screen_content

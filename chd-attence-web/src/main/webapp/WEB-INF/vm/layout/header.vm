@@ -1,0 +1,7 @@
+<!-- 引入css文件，不限顺序 -->
+<link rel="stylesheet" href="${request.contextPath}/static/css/themes/default/easyui.css" type="text/css">
+<link rel="stylesheet" href="${request.contextPath}/static/css/themes/icon.css" type="text/css">
+<script src="${request.contextPath}/static/js/jquery.min.js"></script>
+<script src="${request.contextPath}/static/js/jquery.easyui.min.js"></script>
+<script src="${request.contextPath}/static/js/easyui-lang-zh_CN.js"></script>
+<script src="${request.contextPath}/static/js/common.js"></script>
