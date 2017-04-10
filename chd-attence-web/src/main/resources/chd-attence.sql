@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50540
 File Encoding         : 65001
 
-Date: 2017-04-10 20:50:14
+Date: 2017-04-10 22:20:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,12 +24,10 @@ CREATE TABLE `course` (
   `name` varchar(20) DEFAULT NULL,
   `teacher` varchar(20) DEFAULT NULL,
   `teacher_id` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `updated` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of course
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for course_class
@@ -37,12 +35,10 @@ CREATE TABLE `course` (
 DROP TABLE IF EXISTS `course_class`;
 CREATE TABLE `course_class` (
   `class_id` int(11) DEFAULT NULL,
-  `course_id` int(11) DEFAULT NULL
+  `course_id` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `updated` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of course_class
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for student
@@ -56,13 +52,10 @@ CREATE TABLE `student` (
   `class_id` int(11) DEFAULT NULL,
   `grade` varchar(20) DEFAULT NULL,
   `password` varchar(20) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `updated` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of student
--- ----------------------------
-INSERT INTO `student` VALUES ('1', '田博', '信息工程学院', '通信工程', '240402', '2013', '123456');
 
 -- ----------------------------
 -- Table structure for student_attence
@@ -76,12 +69,10 @@ CREATE TABLE `student_attence` (
   `gps` varchar(20) DEFAULT NULL,
   `course_id` int(11) DEFAULT NULL,
   `wifi_top5` varchar(20) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `updated` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of student_attence
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for teacher
@@ -92,12 +83,10 @@ CREATE TABLE `teacher` (
   `name` varchar(20) DEFAULT NULL,
   `academy` varchar(20) DEFAULT NULL,
   `password` varchar(20) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `updated` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of teacher
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for teacher_attence
@@ -114,12 +103,10 @@ CREATE TABLE `teacher_attence` (
   `start_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `end_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `wifi_name` varchar(20) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `updated` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of teacher_attence
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for teacher_class
@@ -127,9 +114,7 @@ CREATE TABLE `teacher_attence` (
 DROP TABLE IF EXISTS `teacher_class`;
 CREATE TABLE `teacher_class` (
   `teacher_id` int(11) DEFAULT NULL,
-  `class_id` int(11) DEFAULT NULL
+  `class_id` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `updated` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of teacher_class
--- ----------------------------

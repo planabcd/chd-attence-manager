@@ -52,10 +52,9 @@ public abstract class BaseService<T extends BaseModel> {
         return this.mapper.select(record);
     }
 
-
     /**
      * 新增数据
-     * 
+     *
      * @param t
      * @return
      */
@@ -64,6 +63,7 @@ public abstract class BaseService<T extends BaseModel> {
         t.setUpdated(t.getCreated());
         return this.mapper.insert(t);
     }
+
 
     /**
      * 有选择的保存，选择不为null的字段作为插入字段
