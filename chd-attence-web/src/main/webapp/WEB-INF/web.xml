@@ -56,9 +56,13 @@
     <url-pattern>/rest/*</url-pattern>
   </servlet-mapping>
 
-  <!--首页交给程序自己控制-->
+  <servlet-mapping>
+    <servlet-name>chd-attence-manage</servlet-name>
+    <url-pattern>/index</url-pattern>
+  </servlet-mapping>
+
   <welcome-file-list>
-    <welcome-file>/index</welcome-file>
+    <welcome-file>index</welcome-file>
   </welcome-file-list>
 
 </web-app>

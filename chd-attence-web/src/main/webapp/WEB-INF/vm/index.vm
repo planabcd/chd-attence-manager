@@ -1,6 +1,6 @@
 <!doctype html>
     <meta charset="UTF-8">
-    <title>长安大学点名系统</title>
+    <title>${systemName}</title>
     <script src="${request.contextPath}/static/js/jquery.min.js"></script>
     <script src="${request.contextPath}/static/js/jquery.easyui.min.js"></script>
     <script src="${request.contextPath}/static/js/easyui-lang-zh_CN.js"></script>
@@ -61,16 +61,14 @@
         </li>
     </ul>
 </div>
-<div data-options="region:'north'" style="height:50px;background-color:#47acf2">
-    <div style="font-size: 25px;text-align: left;margin-top:10px;margin-left:20px;color:white;font-weight:bold;">长安大学点名系统</div>
-    <div style="text-align: right;margin-top:20px;float:right;width:30%;margin-right:20px;color:white;">
+<div data-options="region:'north'" style="height:80px;background-color:#47acf2">
+    <div style="font-size: 25px;text-align: left;margin-top:10px;margin-left:20px;color:white;font-weight:bold;">${systemName}</div>
+    <div style="text-align: right;margin-top:10px;float:right;width:30%;margin-right:20px;color:white;">
         欢迎,xxx
         <a href="#">
             修改密码
         </a>
-        |
         <a href="#">退出</a>
-        服务器路径:${request.contextPath}
     </div>
 </div>
 <div data-options="region:'center'" style=";background:#eee;">

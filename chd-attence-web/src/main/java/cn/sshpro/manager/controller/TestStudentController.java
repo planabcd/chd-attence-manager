@@ -31,8 +31,4 @@ public class TestStudentController {
         return "test";
     }
 
-    @RequestMapping("/")
-    public String index(Model model){
-        return "index";
-    }
 }
