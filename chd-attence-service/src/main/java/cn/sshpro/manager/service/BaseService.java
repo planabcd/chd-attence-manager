@@ -3,6 +3,8 @@ package cn.sshpro.manager.service;
 import cn.sshpro.manager.pojo.BaseModel;
 import com.github.abel533.entity.Example;
 import com.github.abel533.mapper.Mapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
@@ -50,6 +52,22 @@ public abstract class BaseService<T extends BaseModel> {
      */
     public List<T> queryListByWhere(T record) {
         return this.mapper.select(record);
+    }
+
+
+    /**
+     * 分页查询数据列表
+     *
+     * @param page
+     * @param rows
+     * @param record
+     * @return
+     */
+    public PageInfo<T> queryPageListByWhere(Integer page, Integer rows, T record) {
+        // 设置分页参数
+        PageHelper.startPage(page, rows);
+        List<T> list = this.mapper.select(record);
+        return new PageInfo<T>(list);
     }
 
     /**
