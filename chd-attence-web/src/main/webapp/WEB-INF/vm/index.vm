@@ -12,7 +12,7 @@
         <li>
             <span>学生信息管理</span>
             <ul>
-                <li data-options="attributes:{'url':'${request.contextPath}/plugin/group/list'}">
+                <li data-options="attributes:{'url':'${request.contextPath}/rest/page/student'}">
                     <span>学生列表</span>
                 </li>
             </ul>
