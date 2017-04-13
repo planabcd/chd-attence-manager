@@ -10,7 +10,7 @@
                     <div class="form-group">
                         <label for="stuId" class="col-sm-2 col-md-2 control-label">学号</label>
                         <div class="col-sm-10">
-                            <input value="${student.id}" type="text" name="stuId" id="stuId" class="form-control" placeholder="例如:11">
+                            <input value="${student.stuId}" type="text" name="stuId" id="stuId" class="form-control" placeholder="例如:11">
                         </div>
                     </div>
 

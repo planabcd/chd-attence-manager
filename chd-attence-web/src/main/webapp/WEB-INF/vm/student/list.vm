@@ -60,6 +60,7 @@
         method:"GET",
         columns:[[
             {field:'id',title:'编号',checkbox:true},
+            {field:'stuId',title:'学号'},
             {field:'name',title:'姓名'},
             {field:'academy',title:'学院'},
             {field:'major',title:'专业'},
