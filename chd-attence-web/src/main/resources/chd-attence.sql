@@ -2,21 +2,21 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50717
+Source Server Version : 50540
 Source Host           : localhost:3306
 Source Database       : chd-attence
 
 Target Server Type    : MYSQL
-Target Server Version : 50717
+Target Server Version : 50540
 File Encoding         : 65001
 
-Date: 2017-04-10 18:25:12
+Date: 2017-04-12 21:10:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `course`
+-- Table structure for course
 -- ----------------------------
 DROP TABLE IF EXISTS `course`;
 CREATE TABLE `course` (
@@ -34,7 +34,7 @@ CREATE TABLE `course` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `course_class`
+-- Table structure for course_class
 -- ----------------------------
 DROP TABLE IF EXISTS `course_class`;
 CREATE TABLE `course_class` (
@@ -49,10 +49,11 @@ CREATE TABLE `course_class` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `student`
+-- Table structure for student
 -- ----------------------------
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student` (
+  `stu_id` int(11) NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) DEFAULT NULL,
   `academy` varchar(20) DEFAULT NULL,
@@ -62,7 +63,7 @@ CREATE TABLE `student` (
   `password` varchar(20) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `updated` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`,`stu_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -70,7 +71,7 @@ CREATE TABLE `student` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `student_attence`
+-- Table structure for student_attence
 -- ----------------------------
 DROP TABLE IF EXISTS `student_attence`;
 CREATE TABLE `student_attence` (
@@ -91,7 +92,7 @@ CREATE TABLE `student_attence` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `teacher`
+-- Table structure for teacher
 -- ----------------------------
 DROP TABLE IF EXISTS `teacher`;
 CREATE TABLE `teacher` (
@@ -109,7 +110,7 @@ CREATE TABLE `teacher` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `teacher_attence`
+-- Table structure for teacher_attence
 -- ----------------------------
 DROP TABLE IF EXISTS `teacher_attence`;
 CREATE TABLE `teacher_attence` (
@@ -120,8 +121,8 @@ CREATE TABLE `teacher_attence` (
   `class_id` varchar(50) DEFAULT NULL,
   `teacher_name` varchar(20) DEFAULT NULL,
   `teacher_id` int(11) DEFAULT NULL,
-  `start_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `end_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `start_time` datetime DEFAULT NULL,
+  `end_time` datetime DEFAULT NULL,
   `wifi_name` varchar(20) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `updated` datetime DEFAULT NULL,
@@ -133,7 +134,7 @@ CREATE TABLE `teacher_attence` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `teacher_class`
+-- Table structure for teacher_class
 -- ----------------------------
 DROP TABLE IF EXISTS `teacher_class`;
 CREATE TABLE `teacher_class` (
