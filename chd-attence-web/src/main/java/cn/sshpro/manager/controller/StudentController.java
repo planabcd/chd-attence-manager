@@ -18,7 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * Created by think on 2017/4/10.
+ * Created by think on 2017/4/10
+ * 学生信息控制器类
  */
 @Controller
 @RequestMapping("/student")
@@ -31,9 +32,8 @@ public class StudentController {
     @ResponseBody
     public ResponseEntity<EasyUIResult> list(@RequestParam(value = "page", defaultValue = "1") Integer page,
                                              @RequestParam(value = "rows", defaultValue = "10") Integer row){
-        PageInfo<Student> pageInfo = null;
         try {
-            pageInfo = studentService.queryPageListByWhere(page, row, null);
+            PageInfo<Student> pageInfo = studentService.queryPageListByWhere(page, row, null);
             EasyUIResult easyUIResult = new EasyUIResult(pageInfo.getTotal(), pageInfo.getList());
             return ResponseEntity.ok(easyUIResult);
         } catch (Exception e) {

@@ -1,42 +1,12 @@
 #set($layout="layout/bootstrap.vm")
 <body>
-<script type="text/javascript">
-    $(function(){
-        //点击提交按钮
-        $("#submitBtn").click(editForm);
-
-        $("#cancelBtn").click(function(){
-            window.history.go(-1);
-        });
-    });
-    /**
-     * 提交表单
-     */
-    function editForm(){
-        var url = "${request.contextPath}/rest/student";
-        $("#edit_form").ajaxSubmit({
-            type: "POST",
-            url : url,
-            dataType:"json",
-            success: function(msg){
-                alert('编辑成功!');
-                window.history.go(-1);
-            },
-            error: function(){
-                alert('编辑失败');
-            }
-        });
-    });
-
-    }
-</script>
 <div class="easyui-panel" data-option="fit:true" title="编辑学生信息" style="padding:10px" >
     <!-- 自定义 -->
     <div class="container" style="margin-left: 10px">
         <div class="row">
             <div class="col-md-10 col-sm-10 col-xs-10">
                 <form id="edit_form" method="post" class="form-horizontal" role="form">
-                    <input type="hidden" name="stuId" value="${student.stuId}" />
+                    <input type="hidden" name="id" value="${student.id}" />
                     <div class="form-group">
                         <label for="stuId" class="col-sm-2 col-md-2 control-label">学号</label>
                         <div class="col-sm-10">
@@ -83,7 +53,7 @@
 
                     <div class="form-group" style="margin-left: 60px">
                         <input type="button" value="保存" id="submitBtn" class="btn btn-primary" >
-                        <input type="button" value="取消" id="cancelBtn" class="btn btn-warning" >
+                        <input type="button" value="取消" onclick="javascript:window.history.go(-1);"  id="cancelBtn" class="btn btn-warning" >
                     </div>
                 </form>
             </div>
@@ -91,4 +61,31 @@
     </div>
 </div>
 </body>
+<script type="text/javascript">
+    /**
+     * 提交表单
+     */
+    function editForm(){
+        var url = "${request.contextPath}/rest/student";
+        $.ajax({
+            url : url,
+            type: "POST",
+            data:$("#edit_form").serialize(),
+            dataType:"json",
+            statusCode : {
+                201 :  function(){
+                    alert("操作成功");
+                    window.history.go(-1);
+                },
+                500 : function(){
+                    alert("服务器繁忙");
+                }
+            }
+        })
+    }
+    $(function(){
+        //点击提交按钮
+        $("#submitBtn").click(editForm);
+    });
+</script>
 
