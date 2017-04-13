@@ -3,5 +3,6 @@
 <title>${systemName}</title>
 <head>
     #parse("layout/header.vm")
+    <link href="${request.contextPath}/static/css/bootstrap.min-3.3.7.css" rel="stylesheet">
 </head>
 $screen_content

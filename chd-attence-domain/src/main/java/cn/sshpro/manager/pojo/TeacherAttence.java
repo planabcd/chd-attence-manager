@@ -7,38 +7,38 @@ import java.util.Date;
  */
 public class TeacherAttence extends BaseModel{
 
-    private Integer id;
-    private Integer state;
-    private Integer courseId;
+    private Long state;
+    private Long courseId;
     private String gps;
-    private Integer classId;
+    private Long classId;
     private String teacherName;
-    private Integer teacherId;
+    private Long teacherId;
     private Date startTime;
     private Date endTime;
     private String wifiName;
 
-    public Integer getId() {
+    private Long id;
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getState() {
+    public Long getState() {
         return state;
     }
 
-    public void setState(Integer state) {
+    public void setState(Long state) {
         this.state = state;
     }
 
-    public Integer getCourseId() {
+    public Long getCourseId() {
         return courseId;
     }
 
-    public void setCourseId(Integer courseId) {
+    public void setCourseId(Long courseId) {
         this.courseId = courseId;
     }
 
@@ -50,11 +50,11 @@ public class TeacherAttence extends BaseModel{
         this.gps = gps;
     }
 
-    public Integer getClassId() {
+    public Long getClassId() {
         return classId;
     }
 
-    public void setClassId(Integer classId) {
+    public void setClassId(Long classId) {
         this.classId = classId;
     }
 
@@ -66,11 +66,11 @@ public class TeacherAttence extends BaseModel{
         this.teacherName = teacherName;
     }
 
-    public Integer getTeacherId() {
+    public Long getTeacherId() {
         return teacherId;
     }
 
-    public void setTeacherId(Integer teacherId) {
+    public void setTeacherId(Long teacherId) {
         this.teacherId = teacherId;
     }
 

@@ -8,7 +8,9 @@
         {
             text: '新增',
             iconCls: 'icon-add',
-            handler: function () {window.location.href="<%=request.getContextPath()%>/appversion/add"; }
+            handler: function () {
+                window.location.href="${request.contextPath}/rest/student/0"
+            }
         }, {
             text: '修改',
             iconCls: 'icon-edit',
@@ -16,7 +18,7 @@
                 var row = $("#dg").datagrid('getSelections');
                 if(row.length==1){
                     var id=row[0].id;
-                    window.location.href="<%=request.getContextPath()%>/appversion/edit/"+id;
+                    window.location.href="${request.contextPath}/rest/student/"+id;
                 }else{
                     alert("请选择一行");
                 }

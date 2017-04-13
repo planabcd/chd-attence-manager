@@ -4,19 +4,19 @@ package cn.sshpro.manager.pojo;
  * Created by liaoxin on 2017/4/10.
  */
 public class StudentAttence extends BaseModel{
-    private Integer id;
     private String name;
-    private Integer state;
-    private Integer studentId;
+    private Long state;
+    private Long studentId;
     private String gps;
-    private Integer courseId;
+    private Long courseId;
     private String wifi_top5;
 
-    public Integer getId() {
+    private Long id;
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -28,19 +28,19 @@ public class StudentAttence extends BaseModel{
         this.name = name;
     }
 
-    public Integer getState() {
+    public Long getState() {
         return state;
     }
 
-    public void setState(Integer state) {
+    public void setState(Long state) {
         this.state = state;
     }
 
-    public Integer getStudentId() {
+    public Long getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(Integer studentId) {
+    public void setStudentId(Long studentId) {
         this.studentId = studentId;
     }
 
@@ -52,11 +52,11 @@ public class StudentAttence extends BaseModel{
         this.gps = gps;
     }
 
-    public Integer getCourseId() {
+    public Long getCourseId() {
         return courseId;
     }
 
-    public void setCourseId(Integer courseId) {
+    public void setCourseId(Long courseId) {
         this.courseId = courseId;
     }
 

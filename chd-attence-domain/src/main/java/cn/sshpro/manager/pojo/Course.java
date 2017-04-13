@@ -4,16 +4,16 @@ package cn.sshpro.manager.pojo;
  * Created by liaoxin on 2017/4/10.
  */
 public class Course extends BaseModel{
-  private Integer id;
+
   private String name;
   private String teacher;
-  private Integer teacherId;
-
-    public Integer getId() {
+  private Long teacherId;
+    private Long id;
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -33,11 +33,11 @@ public class Course extends BaseModel{
         this.teacher = teacher;
     }
 
-    public Integer getTeacherId() {
+    public Long getTeacherId() {
         return teacherId;
     }
 
-    public void setTeacherId(Integer teacherId) {
+    public void setTeacherId(Long teacherId) {
         this.teacherId = teacherId;
     }
 }
