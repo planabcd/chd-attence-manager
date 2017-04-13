@@ -1,10 +1,43 @@
 <body>
 <div class="easyui-panel" data-option="fit:true" title="学生信息管理" style="padding:10px" >
+    <table>
+        <tr>
+            <td>专业</td><td><input type="text" id="major"></td>
+        </tr>
+        <tr>
+            <td>开始</td><td><input type="text" id="starttime"></td>
+        </tr>
+        <tr>
+            <td>结束</td><td><input type="text" id="endtime"></td>
+        </tr>
+    </table>
     <table id="dg"></table>
 </div>
 <script type="text/javascript">
 
+    $(function(){
+        $( "#starttime" ).datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat:"yy-mm-dd"
+        });
+    })
     var toolbar = [
+        {
+            text: '查询',
+            iconCls: 'icon-add',
+            handler: function () {
+                $('#dg').datagrid({
+                    queryParams: {
+                        major: $("#major").val(),
+                        strattime: $("#starttime").val(),
+                        endtime: $("#starttime").val()
+                    },
+                    url:"${request.contextPath}/rest/student",
+                    pageNum:1
+                });
+            }
+        },
         {
             text: '新增',
             iconCls: 'icon-add',
