@@ -6,54 +6,53 @@
         <div class="row">
             <div class="col-md-10 col-sm-10 col-xs-10">
                 <form id="edit_form" method="post" class="form-horizontal" role="form">
-                    <input type="hidden" name="id" value="${student.id}" />
                     <div class="form-group">
                         <label for="stuId" class="col-sm-2 col-md-2 control-label">学号</label>
                         <div class="col-sm-10">
-                            <input value="${student.stuId}" type="text" name="stuId" id="stuId" class="form-control" placeholder="例如:11">
+                            <input type="text" name="stuId" id="stuId" class="form-control" placeholder="例如:11">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="name" class="col-sm-2 col-md-2 control-label" >姓名</label>
                         <div class="col-sm-10">
-                            <input value="$student.name" type="text" name="name" id="name" class="form-control">
+                            <input type="text" name="name" id="name" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="academy" class="col-sm-2 col-md-2 col-lg-2 control-label">学院</label>
                         <div class="col-sm-10">
-                            <input value="${student.academy}" type="text" name="academy" id="academy" class="form-control"  >
+                            <input type="text" name="academy" id="academy" class="form-control"  >
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="major" class="col-sm-2 col-md-2 control-label">专业</label>
                         <div class="col-sm-10">
-                            <input value="${student.major}" type="text" name="major" id="major" class="form-control"  >
+                            <input type="text" name="major" id="major" class="form-control"  >
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="classId" class="col-sm-2 col-md-2 control-label">班级</label>
                         <div class="col-sm-10">
-                            <input value="${student.classId}" type="text" name="classId" id="classId" class="form-control" placeholder="例如:240402">
+                            <input type="text" name="classId" id="classId" class="form-control" placeholder="例如:240402">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="grade" class="col-sm-2 col-md-2 control-label">年级</label>
                         <div class="col-sm-10">
-                            <input value="${student.grade}" type="text" name="grade" id="grade" class="form-control" placeholder="例如:2013">
+                            <input type="text" name="grade" id="grade" class="form-control" placeholder="例如:2013">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="password" class="col-sm-2 col-md-2 control-label">密码</label>
                         <div class="col-sm-10">
-                            <input value="${student.password}" type="text" name="password" id="password" class="form-control">
+                            <input type="text" name="password" id="password" class="form-control">
                         </div>
                     </div>
 
                     <div class="form-group" style="margin-left: 60px">
                         <input type="button" value="保存" id="submitBtn" class="btn btn-primary" >
-                        <input type="button" value="取消" onclick="javascript:window.history.go(-1);"  id="cancelBtn" class="btn btn-warning" >
+                        <input type="button" value="取消" onclick="javascript:window.history.go(-1);" id="cancelBtn" class="btn btn-warning" >
                     </div>
                 </form>
             </div>
@@ -88,4 +87,3 @@
         $("#submitBtn").click(editForm);
     });
 </script>
-
