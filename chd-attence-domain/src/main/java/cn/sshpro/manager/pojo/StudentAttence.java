@@ -1,9 +1,16 @@
 package cn.sshpro.manager.pojo;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * Created by liaoxin on 2017/4/10.
  */
 public class StudentAttence extends BaseModel{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private Long state;
     private Long studentId;
@@ -11,7 +18,6 @@ public class StudentAttence extends BaseModel{
     private Long courseId;
     private String wifi_top5;
 
-    private Long id;
     public Long getId() {
         return id;
     }

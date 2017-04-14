@@ -4,7 +4,7 @@
         <li>
             <span>教师信息管理</span>
             <ul>
-                <li data-options="attributes:{'url':'${request.contextPath}/plugin/list/all'}">
+                <li data-options="attributes:{'url':'${request.contextPath}/rest/page/teacher'}">
                     <span>教师列表</span>
                 </li>
             </ul>

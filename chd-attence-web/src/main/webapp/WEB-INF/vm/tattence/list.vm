@@ -1,0 +1,52 @@
+<body>
+<div class="easyui-panel" data-option="fit:true" title="教师考勤信息管理" style="padding:10px" >
+    <table id="dg"></table>
+</div>
+<script type="text/javascript">
+    var toolbar = [
+        {
+            text: '新增',
+            iconCls: 'icon-add',
+            handler: function () {
+                window.location.href="${request.contextPath}/rest/tattence/0"
+            }
+        }, {
+            text: '修改',
+            iconCls: 'icon-edit',
+            handler: function () {
+                var row = $("#dg").datagrid('getSelections');
+                if(row.length==1){
+                    var id=row[0].id;
+                    window.location.href="${request.contextPath}/rest/tattence/"+id;
+                }else{
+                    alert("请选择一行");
+                }
+            }
+
+        }
+    ];
+    $('#dg').datagrid({
+        url:"${request.contextPath}/rest/tattence",
+        method:"GET",
+        columns:[[
+            {field:'id',title:'考勤编号',checkbox:true},
+            {field:'state',title:'考勤状态'},
+            {field:'courseId',title:'课程编号'},
+            {field:'classId',title:'班级编号'},
+            {field:'teacherName',title:'教师姓名'},
+            {field:'teacherId',title:'教师工号'},
+            {field:'courseId',title:'课程编号'},
+            {field:'wifiName',title:'热点名称'},
+            {field:'gps',title:'gps'},
+            {field:'startTime',title:'开始时间',formatter:formatDatebox},
+            {field:'endTime',title:'结束时间',formatter:formatDatebox},
+            {field:'created',title:'创建时间',formatter:formatDatebox},
+            {field:'updated',title:'修改时间',formatter:formatDatebox}
+        ]] ,
+        toolbar: toolbar,
+        pagination:true,
+        pageSize: 10,
+        pageList: [10,25,50]
+    });
+</script>
+</body>

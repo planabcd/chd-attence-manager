@@ -95,6 +95,8 @@ public abstract class BaseService<T extends BaseModel> {
         return this.mapper.insertSelective(t);
     }
 
+
+
     /**
      * 更新数据
      * 
@@ -150,4 +152,5 @@ public abstract class BaseService<T extends BaseModel> {
     public Integer deleteByWhere(T record){
         return this.mapper.delete(record);
     }
+
 }
