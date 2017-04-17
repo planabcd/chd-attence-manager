@@ -22,6 +22,19 @@
                     alert("请选择一行");
                 }
             }
+        },
+        {
+            text: ' 查看考勤',
+            iconCls: 'icon-edit',
+            handler: function () {
+                var row = $("#dg").datagrid('getSelections');
+                if(row.length==1){
+                    var id=row[0].id;
+                    window.location.href="${request.contextPath}/rest/tattence/detail/"+id;
+                }else{
+                    alert("请选择一行");
+                }
+            }
 
         }
     ];
@@ -30,7 +43,9 @@
         method:"GET",
         columns:[[
             {field:'id',title:'工号',checkbox:true},
-            {field:'teacher_id',title:'工号'},
+            {field:'teacher_id',title:'教师工号',formatter:function(value,row,index){
+                return row.id;
+            }},
             {field:'name',title:'姓名'},
             {field:'academy',title:'学院'},
             {field:'created',title:'创建时间',formatter:formatDatebox},

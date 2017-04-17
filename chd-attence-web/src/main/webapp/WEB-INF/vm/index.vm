@@ -17,6 +17,25 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <span>考勤信息管理</span>
+            <ul>
+                <li data-options="attributes:{'url':'${request.contextPath}/rest/page/sattence'}">
+                    <span>学生考勤列表</span>
+                </li>
+                <li data-options="attributes:{'url':'${request.contextPath}/rest/page/tattence'}">
+                    <span>教师考勤列表</span>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <span>课程信息管理</span>
+            <ul>
+                <li data-options="attributes:{'url':'${request.contextPath}/rest/page/course'}">
+                    <span>课程列表</span>
+                </li>
+            </ul>
+        </li>
     </ul>
 </div>
 <div data-options="region:'north'" style="height:80px;background-color:#47acf2">

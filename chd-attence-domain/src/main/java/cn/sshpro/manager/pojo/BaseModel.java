@@ -1,5 +1,8 @@
 package cn.sshpro.manager.pojo;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
 
 /**
@@ -8,6 +11,16 @@ import java.util.Date;
 public abstract class BaseModel {
     private Date created;
     private Date updated;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     public Date getCreated() {
         return created;
     }

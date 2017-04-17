@@ -1,9 +1,5 @@
 package cn.sshpro.manager.pojo;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 /**
  * Created by liaoxin on 2017/4/10.
  */
@@ -16,16 +12,14 @@ public class Student extends BaseModel {
     private Long classId;
     private String grade;
     private String password;
+    private String macAddress;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    public Long getId() {
-        return id;
+    public String getMacAddress() {
+        return macAddress;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setMacAddress(String macAddress) {
+        this.macAddress = macAddress;
     }
 
     public Long getStuId() {

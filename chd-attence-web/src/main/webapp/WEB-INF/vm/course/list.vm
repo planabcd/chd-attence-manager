@@ -30,6 +30,9 @@
         method:"GET",
         columns:[[
             {field:'id',title:'编号',checkbox:true},
+            {field:'course_id',title:'课程编号',formatter:function(value,row,index){
+                return row.id;
+            }},
             {field:'name',title:'课程名'},
             {field:'teacher',title:'教师姓名'},
             {field:'teacherId',title:'教师工号'},

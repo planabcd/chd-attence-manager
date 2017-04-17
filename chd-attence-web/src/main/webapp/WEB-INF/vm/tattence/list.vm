@@ -26,7 +26,7 @@
         }
     ];
     $('#dg').datagrid({
-        url:"${request.contextPath}/rest/tattence",
+        url:"${request.contextPath}/rest/tattence/list/#if(!${teacherId})0#else$!{teacherId}#end",
         method:"GET",
         columns:[[
             {field:'id',title:'考勤编号',checkbox:true},

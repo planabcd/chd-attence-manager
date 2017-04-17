@@ -15,21 +15,29 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 /**
- * Created by think on 2017/4/10.
+ * Created by think on 2017/4/10
  */
 @Controller
 @RequestMapping("tattence")
 public class TeacherAttenceController {
     @Resource
     private TeacherAttenceService teacherAttenceService;
+
+
+
     private Logger logger = LoggerFactory.getLogger(TeacherAttenceController.class);
 
-    @RequestMapping(method= RequestMethod.GET)
+    @RequestMapping(value="/list/{teacherId}",method= RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<EasyUIResult> list(@RequestParam(value = "page", defaultValue = "1") Integer page,
+    public ResponseEntity<EasyUIResult> list(@PathVariable("teacherId")Long teacherId,@RequestParam(value = "page", defaultValue = "1") Integer page,
                                              @RequestParam(value = "rows", defaultValue = "10") Integer row){
         try {
-            PageInfo<TeacherAttence> pageInfo = teacherAttenceService.queryPageListByWhere(page, row, null);
+            TeacherAttence record = null;
+            if(teacherId!=0){
+                record = new TeacherAttence();
+                record.setTeacherId(teacherId);
+            }
+            PageInfo<TeacherAttence> pageInfo = teacherAttenceService.queryPageListByWhere(page, row, record);
             EasyUIResult easyUIResult = new EasyUIResult(pageInfo.getTotal(), pageInfo.getList());
             return ResponseEntity.ok(easyUIResult);
         } catch (Exception e) {
@@ -37,6 +45,13 @@ public class TeacherAttenceController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+    @RequestMapping(value="/detail/{teacherId}",method= RequestMethod.GET)
+    public String detail(@PathVariable("teacherId")Long studentId,Model model){
+        model.addAttribute("teacherId",studentId);
+        return "tattence/list";
+    }
+
 
     @RequestMapping(method= RequestMethod.POST)
     @ResponseBody
@@ -68,4 +83,23 @@ public class TeacherAttenceController {
         }
         return "layout/error";
     }
+
+    /**
+     * 教师端开启点名
+     * @param courseId
+     * @param classId
+     * @param teacherId
+     * @return
+     */
+    @RequestMapping(value="/call")
+    @ResponseBody
+    public TeacherAttence call(@RequestParam("courseId")Long courseId, @RequestParam("classId")Long classId, @RequestParam("teacherId")Long teacherId){
+        return teacherAttenceService.saveCall(courseId,classId,teacherId);
+    }
+
+
+
+
+
+
 }

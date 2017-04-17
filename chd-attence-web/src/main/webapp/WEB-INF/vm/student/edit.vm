@@ -75,7 +75,7 @@
             statusCode : {
                 201 :  function(){
                     alert("操作成功");
-                    window.history.go(-1);
+                    window.location.href = "${request.contextPath}/rest/page/student";
                 },
                 500 : function(){
                     alert("服务器繁忙");

@@ -26,15 +26,15 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="teacherAttenceName" class="col-sm-2 col-md-2 control-label">教师姓名</label>
+                        <label for="teacherName" class="col-sm-2 col-md-2 control-label">教师姓名</label>
                         <div class="col-sm-10">
-                            <input value="$!{teacherAttence.teacherAttenceName}" type="text" name="teacherAttenceName" id="teacherAttenceName" class="form-control">
+                            <input value="$!{teacherAttence.teacherName}" type="text" name="teacherName" id="teacherName" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="teacherAttenceId" class="col-sm-2 col-md-2 control-label">教师工号</label>
+                        <label for="teacherId" class="col-sm-2 col-md-2 control-label">教师工号</label>
                         <div class="col-sm-10">
-                            <input value="$!{teacherAttence.teacherAttenceId}" type="text" name="teacherAttenceId" id="teacherAttenceId" class="form-control">
+                            <input value="$!{teacherAttence.teacherId}" type="text" name="teacherId" id="teacherId" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
@@ -57,14 +57,18 @@
                     </div>
                     <div class="form-group">
                         <label for="startTime" class="col-sm-2 col-md-2 col-lg-2 control-label">开始时间</label>
-                        <div class="col-sm-10">
-                            <input value="$!{teacherAttence.startTime}" type="text" name="startTime" id="startTime" class="form-control"  >
+                        <div class="col-sm-10 input-append date" id="datetimepicker">
+                            <input value="$!date.format('yyyy-MM-dd',$!teacherAttence.startTime)" type="text" name="startTime" id="startTime" class="form-control"  >
+                            <span class="add-on">
+                            <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                        </span>
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label for="endTime" class="col-sm-2 col-md-2 control-label">结束时间</label>
                         <div class="col-sm-10">
-                            <input value="$!{teacherAttence.endTime}" type="text" name="endTime" id="endTime" class="form-control">
+                            <input value="$!date.format('yyyy-MM-dd',$!{teacherAttence.endTime})" type="text" name="endTime" id="endTime" class="form-control">
                         </div>
                     </div>
 
@@ -103,6 +107,17 @@
     $(function(){
         //点击提交按钮
         $("#submitBtn").click(editForm);
+       /* $('#datetimepicker').datetimepicker({
+            format: 'yyyy-MM-dd hh:mm:ss',
+            language: 'ch',
+            pickDate: true,
+            pickTime: true,
+            hourStep: 1,
+            minuteStep: 15,
+            secondStep: 30,
+            inputMask: true,
+            close:true
+        });*/
     });
 </script>
 

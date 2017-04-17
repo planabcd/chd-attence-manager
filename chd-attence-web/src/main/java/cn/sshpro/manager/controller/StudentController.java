@@ -4,6 +4,8 @@ import cn.sshpro.manager.pojo.EasyUIResult;
 import cn.sshpro.manager.pojo.Student;
 import cn.sshpro.manager.service.StudentService;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -13,6 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by think on 2017/4/10
@@ -70,22 +75,37 @@ public class StudentController {
         return "layout/error";
     }
 
-    /*@RequestMapping(value="test",method= RequestMethod.GET)
-    public void testAdd(){
-        for(int i=0; i!=40; i++){
-            Student student = new Student();
-            student.setName("lx"+i);
-            student.setStuId(11L);
-            student.setAcademy("xxxy");
-            student.setClassId(240402L);
-            student.setGrade("2013");
-            student.setMajor("txgc");
-            student.setCreated(new Date());
-            student.setUpdated(new Date());
-            studentService.save(student);
+    @RequestMapping("/login")
+    @ResponseBody
+    public Student login(@RequestParam("studentId")Long studentId,@RequestParam("pwd")String pwd){
+        Student record = new Student();
+        record.setStuId(studentId);
+        record.setPassword(pwd);
+        List<Student> students = studentService.queryListByWhere(record);
+        if(CollectionUtils.isNotEmpty(students)){
+            return students.get(0);
         }
-    }*/
+        return new Student();
+    }
 
-
+    @RequestMapping("/bind")
+    @ResponseBody
+    public Map<String,Object> bind(@RequestParam("studentId")Long studentId, @RequestParam("pwd")String pwd,@RequestParam("macAddress")String macAddress){
+        Student record = new Student();
+        record.setStuId(studentId);
+        record.setPassword(pwd);
+        List<Student> students = studentService.queryListByWhere(record);
+        HashMap<String, Object> result = new HashMap<String, Object>();
+        if(CollectionUtils.isNotEmpty(students) && StringUtils.isNotBlank(macAddress)){
+            Student student = students.get(0);
+            student.setMacAddress(macAddress);
+            studentService.updateSelective(student);
+            result.put("student", student);
+            result.put("success",true);
+            return result;
+        }
+        result.put("success",false);
+        return result;
+    }
 
 }

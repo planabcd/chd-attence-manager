@@ -153,4 +153,16 @@ public abstract class BaseService<T extends BaseModel> {
         return this.mapper.delete(record);
     }
 
+    /**
+     * 保存/更新
+     * @param t
+     */
+    public void saveOrupdate(T t){
+        if(t.getId()!=null){
+            updateSelective(t);
+        }else{
+            save(t);
+        }
+    }
+
 }

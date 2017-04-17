@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toolbox>
+    <!--数字格式化-->
+    <tool>
+        <key>NumberTool</key>
+        <scope>application</scope>
+        <class>org.apache.velocity.tools.generic.NumberTool</class>
+    </tool>
+    <!--日期格式化-->
+    <tool>
+        <key>date</key>
+        <scope>application</scope>
+        <class>org.apache.velocity.tools.generic.DateTool</class>
+    </tool>
+</toolbox>

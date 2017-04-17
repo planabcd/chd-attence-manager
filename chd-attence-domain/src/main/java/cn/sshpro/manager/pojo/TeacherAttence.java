@@ -1,33 +1,32 @@
 package cn.sshpro.manager.pojo;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
  * Created by liaoxin on 2017/4/10
  */
 public class TeacherAttence extends BaseModel{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private Long state;
     private Long courseId;
     private String gps;
     private Long classId;
     private String teacherName;
     private Long teacherId;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endTime;
     private String wifiName;
+    private String wifiPwd;
 
-    public Long getId() {
-        return id;
+    public String getWifiPwd() {
+        return wifiPwd;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setWifiPwd(String wifiPwd) {
+        this.wifiPwd = wifiPwd;
     }
 
     public Long getState() {

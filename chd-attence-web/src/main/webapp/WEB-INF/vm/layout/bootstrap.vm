@@ -3,6 +3,10 @@
 <title>chd-attence-manager</title>
 <head>
     #parse("layout/header.vm")
+    #*<link href="${request.contextPath}/static/css/bootstrap-combined.min.css" rel="stylesheet">*#
     <link href="${request.contextPath}/static/css/bootstrap.min-3.3.7.css" rel="stylesheet">
+    #*<link rel="stylesheet" type="text/css" href="${request.contextPath}/static/css/bootstrap-datetimepicker.min.css">*#
+    #*<script type="text/javascript"  src="${request.contextPath}/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript"  src="${request.contextPath}/static/js/bootstrap-datetimepicker.min.js"  charset="utf-8"></script>*#
 </head>
 $screen_content
