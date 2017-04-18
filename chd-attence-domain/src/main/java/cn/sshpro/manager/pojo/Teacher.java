@@ -7,7 +7,15 @@ public class Teacher extends BaseModel {
     private String name;
     private String academy;
     private String password;
+    private Long teacherId;
 
+    public Long getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(Long teacherId) {
+        this.teacherId = teacherId;
+    }
 
     public String getName() {
         return name;

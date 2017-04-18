@@ -1,9 +1,12 @@
 package cn.sshpro.manager.controller;
 
 import cn.sshpro.manager.pojo.EasyUIResult;
+import cn.sshpro.manager.pojo.StudentAttence;
 import cn.sshpro.manager.pojo.TeacherAttence;
+import cn.sshpro.manager.service.StudentAttenceService;
 import cn.sshpro.manager.service.TeacherAttenceService;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -13,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by think on 2017/4/10
@@ -22,7 +26,8 @@ import javax.annotation.Resource;
 public class TeacherAttenceController {
     @Resource
     private TeacherAttenceService teacherAttenceService;
-
+    @Resource
+    private StudentAttenceService studentAttenceService;
 
 
     private Logger logger = LoggerFactory.getLogger(TeacherAttenceController.class);
@@ -97,9 +102,38 @@ public class TeacherAttenceController {
         return teacherAttenceService.saveCall(courseId,classId,teacherId);
     }
 
+    /**
+     * 教师端终止考勤
+     * @param tacherAttenceId
+     * @return
+     */
+    @RequestMapping(value="/cancelCall")
+    @ResponseBody
+    public TeacherAttence cancelCall(@RequestParam("tacherAttenceId")Long tacherAttenceId){
+        return teacherAttenceService.cancelCall(tacherAttenceId);
+    }
 
 
-
-
+    /**
+     * 为考勤失败的同学提供考勤
+     * @param teacherAttenceId
+     * @param studentId
+     * @return
+     */
+    @RequestMapping(value="/specialCall")
+    @ResponseBody
+    public StudentAttence cancelCall(@RequestParam("teacherAttenceId")Long teacherAttenceId,@RequestParam("studentId")Long studentId){
+        StudentAttence studentAttence = new StudentAttence();
+        studentAttence.setTeacherAttenceId(teacherAttenceId);
+        studentAttence.setStudentId(studentId);
+        List<StudentAttence> studentAttences = studentAttenceService.queryListByWhere(studentAttence);
+        if(CollectionUtils.isNotEmpty(studentAttences)){
+            StudentAttence record = studentAttences.get(0);
+            record.setState(2L);
+            studentAttenceService.updateSelective(record);
+            return studentAttence;
+        }
+        return null;
+    }
 
 }

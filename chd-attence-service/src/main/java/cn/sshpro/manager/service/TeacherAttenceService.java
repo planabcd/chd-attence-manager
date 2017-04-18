@@ -25,6 +25,7 @@ import java.util.Random;
 public class TeacherAttenceService extends BaseService<TeacherAttence>{
     @Autowired
     private TeacherAttenceMapper teacherAttenceMapper;
+
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @Resource
@@ -90,7 +91,7 @@ public class TeacherAttenceService extends BaseService<TeacherAttence>{
 
 
     /**
-     * 结束考勤
+     * 教师端结束考勤
      */
     public TeacherAttence cancelCall(Long teacherAttenceId) {
         try {
@@ -99,14 +100,29 @@ public class TeacherAttenceService extends BaseService<TeacherAttence>{
             record.setState(2L);
             record.setEndTime(new Date());
             this.updateSelective(record);
+            StudentAttence record2 = new StudentAttence();
+            record2.setTeacherAttenceId(teacherAttenceId);
+            List<StudentAttence> studentAttences = studentAttenceService.queryListByWhere(record2);
+            if (CollectionUtils.isNotEmpty(studentAttences)) {
+                for (StudentAttence s : studentAttences) {
+                    Long state = s.getState();
+                    if (state == 1) {
+                        //如果没有考勤视为缺勤
+                        state = 3L;
+                        studentAttenceService.updateSelective(s);
+                    }
+                }
+            }
             String result = objectMapper.writeValueAsString(record);
-            logger.info("结束teacherAttence成功,result={}",result);
+            logger.info("结束teacherAttence成功,result={}", result);
             return record;
         } catch (Exception e) {
-            logger.error("结束teacherAttence失败",e);
+            logger.error("结束teacherAttence失败", e);
         }
         return null;
     }
+
+
 
     private String getWifiName(){
         Random random = new Random();

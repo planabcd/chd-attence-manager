@@ -88,7 +88,7 @@ public class StudentAttenceController {
         return "layout/error";
     }
 
-    @RequestMapping(value="/call")
+    /*@RequestMapping(value="/call")
     @ResponseBody
     public List<TeacherAttence> call(@RequestParam("courseId")Long courseId, @RequestParam("classId")Long classId,
         @RequestParam("teacherId")Long teacherId,@RequestParam("state")Long state){
@@ -99,7 +99,23 @@ public class StudentAttenceController {
         record.setState(state);
 
         return teacherAttenceService.getCall(courseId, classId, teacherId,state);
+    }*/
+
+    @RequestMapping(value="/call")
+    @ResponseBody
+    public TeacherAttence call(@RequestParam("studentId")Long studentId){
+        StudentAttence record = new StudentAttence();
+        record.setState(1L);
+        record.setStudentId(studentId);
+        List<StudentAttence> studentAttences = studentAttenceService.queryListByWhere(record);
+        if(CollectionUtils.isNotEmpty(studentAttences)){
+            Long teacherAttenceId = studentAttences.get(0).getTeacherAttenceId();
+            TeacherAttence teacherAttence = teacherAttenceService.queryById(teacherAttenceId);
+            return teacherAttence;
+        }
+        return null;
     }
+
 
     @RequestMapping(value="/doCall")
     @ResponseBody

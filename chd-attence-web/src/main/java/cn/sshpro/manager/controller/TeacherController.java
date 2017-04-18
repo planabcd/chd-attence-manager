@@ -4,6 +4,7 @@ import cn.sshpro.manager.pojo.EasyUIResult;
 import cn.sshpro.manager.pojo.Teacher;
 import cn.sshpro.manager.service.TeacherService;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by think on 2017/4/10.
@@ -23,6 +25,20 @@ public class TeacherController {
     @Resource
     private TeacherService teacherService;
     private Logger logger = LoggerFactory.getLogger(TeacherController.class);
+
+    @RequestMapping("/login")
+    @ResponseBody
+    public Teacher login(@RequestParam("teacherId")Long teacherId, @RequestParam("pwd")String pwd){
+        Teacher record = new Teacher();
+        record.setTeacherId(teacherId);
+        record.setPassword(pwd);
+        List<Teacher> students = teacherService.queryListByWhere(record);
+        if(CollectionUtils.isNotEmpty(students)){
+            return students.get(0);
+        }
+        return null;
+    }
+
 
     @RequestMapping(method= RequestMethod.GET)
     @ResponseBody

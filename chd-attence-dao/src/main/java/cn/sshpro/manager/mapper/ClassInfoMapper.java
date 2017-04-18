@@ -6,7 +6,7 @@ import com.github.abel533.mapper.Mapper;
 import java.util.List;
 
 /**
- * Created by liaoxin on 2017/4/6.
+ * Created by liaoxin on 2017/4/6
  */
 public interface ClassInfoMapper extends Mapper<ClassInfo> {
 
