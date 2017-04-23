@@ -104,16 +104,7 @@ public class StudentAttenceController {
     @RequestMapping(value="/call")
     @ResponseBody
     public TeacherAttence call(@RequestParam("studentId")Long studentId){
-        StudentAttence record = new StudentAttence();
-        record.setState(1L);
-        record.setStudentId(studentId);
-        List<StudentAttence> studentAttences = studentAttenceService.queryListByWhere(record);
-        if(CollectionUtils.isNotEmpty(studentAttences)){
-            Long teacherAttenceId = studentAttences.get(0).getTeacherAttenceId();
-            TeacherAttence teacherAttence = teacherAttenceService.queryById(teacherAttenceId);
-            return teacherAttence;
-        }
-        return null;
+        return studentAttenceService.getByStudentId(studentId);
     }
 
 

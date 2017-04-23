@@ -108,7 +108,7 @@ public class TeacherAttenceService extends BaseService<TeacherAttence>{
                     Long state = s.getState();
                     if (state == 1) {
                         //如果没有考勤视为缺勤
-                        state = 3L;
+                        s.setState(3L);
                         studentAttenceService.updateSelective(s);
                     }
                 }
