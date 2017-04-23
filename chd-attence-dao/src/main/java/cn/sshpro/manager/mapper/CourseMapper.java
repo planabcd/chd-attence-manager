@@ -11,4 +11,5 @@ import java.util.List;
 public interface CourseMapper extends Mapper<Course> {
 
     List<Course> queryByClassId(Long classId);
+
 }

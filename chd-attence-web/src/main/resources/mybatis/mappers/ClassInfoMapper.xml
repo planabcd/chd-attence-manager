@@ -4,7 +4,7 @@
 <mapper namespace="cn.sshpro.manager.mapper.ClassInfoMapper">
 	
 	<select id="queryByTeacherId" parameterType="java.lang.Long" resultType="ClassInfo">
-		SELECT c.* FROM teacher_class tc LEFT JOIN class_info c
+		SELECT c.*,c.class_id classId FROM teacher_class tc LEFT JOIN class_info c
 		ON c.class_id = tc.class_id
 		WHERE tc.teacher_id = #{teacherId}
 		ORDER BY updated DESC

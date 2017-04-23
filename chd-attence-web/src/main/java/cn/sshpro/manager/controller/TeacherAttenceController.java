@@ -136,4 +136,18 @@ public class TeacherAttenceController {
         return null;
     }
 
+    /**
+     * 通过教师考勤明细Id查询最新的学生考勤即细腻系
+     * @param teacherAttenceId
+     * @return
+     */
+    @RequestMapping(value="/studentAttenceList")
+    @ResponseBody
+    public List<StudentAttence> listStudentAttence(@RequestParam("teacherAttenceId")Long teacherAttenceId){
+        StudentAttence studentAttence = new StudentAttence();
+        studentAttence.setTeacherAttenceId(teacherAttenceId);
+        List<StudentAttence> studentAttences = studentAttenceService.queryListByWhere(studentAttence);
+        return studentAttences;
+    }
+
 }
