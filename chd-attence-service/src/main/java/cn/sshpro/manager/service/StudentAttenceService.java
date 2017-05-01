@@ -2,11 +2,12 @@ package cn.sshpro.manager.service;
 
 import cn.sshpro.manager.mapper.StudentAttenceMapper;
 import cn.sshpro.manager.mapper.TeacherAttenceMapper;
+import cn.sshpro.manager.pojo.Course;
 import cn.sshpro.manager.pojo.StudentAttence;
+import cn.sshpro.manager.pojo.StudentAttenceVO;
 import cn.sshpro.manager.pojo.TeacherAttence;
 import com.github.abel533.entity.Example;
 import org.apache.commons.collections.CollectionUtils;
-import org.aspectj.weaver.patterns.ExactTypePattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,5 +39,9 @@ public class StudentAttenceService extends BaseService<StudentAttence>{
             return teacherAttence;
         }
         return null;
+    }
+
+    public List<StudentAttenceVO> listHistory(Long studentId) {
+        return studentAttenceMapper.listHistory(studentId);
     }
 }

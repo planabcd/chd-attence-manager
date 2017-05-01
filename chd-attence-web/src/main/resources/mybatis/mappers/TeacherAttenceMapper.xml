@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sshpro.manager.mapper.TeacherAttenceMapper">
+	
+	<select id="listHistory" parameterType="java.lang.Long" resultType="cn.sshpro.manager.pojo.TeacherAttenceVO">
+		SELECT
+			c.name courseName,
+			ta.id,
+			ta.state,
+			ta.course_id courseId,
+			ta.gps,
+			ta.class_id classId,
+			ta.teacher_name teacherName,
+			ta.teacher_id teacherId,
+			ta.start_time startTime,
+			ta.end_time endTime,
+			ta.wifi_name wifiName,
+			ta.wifi_pwd wifiPwd,
+			ta.created,
+			ta.updated
+		FROM teacher_attence ta
+		LEFT JOIN course c
+		on ta.course_id = c.id
+		WHERE ta.teacher_id = #{teacherId}
+		ORDER BY updated DESC
+	</select>
+
+</mapper>

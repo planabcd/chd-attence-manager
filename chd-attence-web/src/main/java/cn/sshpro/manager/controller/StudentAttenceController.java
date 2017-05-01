@@ -2,6 +2,7 @@ package cn.sshpro.manager.controller;
 
 import cn.sshpro.manager.pojo.EasyUIResult;
 import cn.sshpro.manager.pojo.StudentAttence;
+import cn.sshpro.manager.pojo.StudentAttenceVO;
 import cn.sshpro.manager.pojo.TeacherAttence;
 import cn.sshpro.manager.service.StudentAttenceService;
 import cn.sshpro.manager.service.TeacherAttenceService;
@@ -105,6 +106,12 @@ public class StudentAttenceController {
     @ResponseBody
     public TeacherAttence call(@RequestParam("studentId")Long studentId){
         return studentAttenceService.getByStudentId(studentId);
+    }
+
+    @RequestMapping(value="/history")
+    @ResponseBody
+    public List<StudentAttenceVO> listHistory(@RequestParam("studentId")Long studentId){
+        return studentAttenceService.listHistory(studentId);
     }
 
 

@@ -1,10 +1,7 @@
 package cn.sshpro.manager.service;
 
 import cn.sshpro.manager.mapper.TeacherAttenceMapper;
-import cn.sshpro.manager.pojo.Student;
-import cn.sshpro.manager.pojo.StudentAttence;
-import cn.sshpro.manager.pojo.Teacher;
-import cn.sshpro.manager.pojo.TeacherAttence;
+import cn.sshpro.manager.pojo.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.abel533.entity.Example;
 import org.apache.commons.collections.CollectionUtils;
@@ -136,6 +133,10 @@ public class TeacherAttenceService extends BaseService<TeacherAttence>{
     private String getWifiPwd(){
         StringBuilder sb = new StringBuilder(new Date().getTime() + "");
         return sb.reverse().toString().substring(0,8);
+    }
+
+    public List<TeacherAttenceVO> listHistory(Long teacherId) {
+        return teacherAttenceMapper.listHistory(teacherId);
     }
 }
 

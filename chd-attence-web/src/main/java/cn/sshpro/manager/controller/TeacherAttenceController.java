@@ -1,8 +1,6 @@
 package cn.sshpro.manager.controller;
 
-import cn.sshpro.manager.pojo.EasyUIResult;
-import cn.sshpro.manager.pojo.StudentAttence;
-import cn.sshpro.manager.pojo.TeacherAttence;
+import cn.sshpro.manager.pojo.*;
 import cn.sshpro.manager.service.StudentAttenceService;
 import cn.sshpro.manager.service.TeacherAttenceService;
 import com.github.pagehelper.PageInfo;
@@ -113,7 +111,6 @@ public class TeacherAttenceController {
         return teacherAttenceService.cancelCall(tacherAttenceId);
     }
 
-
     /**
      * 为考勤失败的同学提供考勤
      * @param teacherAttenceId
@@ -148,6 +145,17 @@ public class TeacherAttenceController {
         studentAttence.setTeacherAttenceId(teacherAttenceId);
         List<StudentAttence> studentAttences = studentAttenceService.queryListByWhere(studentAttence);
         return studentAttences;
+    }
+
+    /**
+     * 通过教师考勤历史记录
+     * @param teacherId
+     * @return
+     */
+    @RequestMapping(value="/history")
+    @ResponseBody
+    public List<TeacherAttenceVO> listHistory(@RequestParam("teacherId")Long teacherId){
+        return teacherAttenceService.listHistory(teacherId);
     }
 
 }
