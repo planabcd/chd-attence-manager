@@ -2,11 +2,13 @@ package cn.sshpro.manager.pojo;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
  * Created by liaoxin on 2017/4/10
  */
+@Table(name="teacher_attence")
 public class TeacherAttence extends BaseModel{
     private Long state;
     private Long courseId;

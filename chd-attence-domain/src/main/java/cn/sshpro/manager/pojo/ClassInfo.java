@@ -1,8 +1,11 @@
 package cn.sshpro.manager.pojo;
 
+import javax.persistence.Table;
+
 /**
  * Created by liaoxin on 2017/4/10.
  */
+@Table(name="class_info")
 public class ClassInfo extends BaseModel{
       private String academy;
       private String marjor;

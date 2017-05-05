@@ -1,8 +1,11 @@
 package cn.sshpro.manager.pojo;
 
+import javax.persistence.Table;
+
 /**
  * Created by liaoxin on 2017/4/10.
  */
+@Table(name="student_attence")
 public class StudentAttence extends BaseModel{
     private String name;
     private Long state;
