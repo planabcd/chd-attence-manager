@@ -47,7 +47,9 @@ public class TeacherAttenceService extends BaseService<TeacherAttence>{
 
     public TeacherAttence saveCall(Long courseId, Long classId, Long teacherId) {
         try {
-            Teacher teacher = teacherService.queryById(teacherId);
+            Teacher record1 = new Teacher();
+            record1.setTeacherId(teacherId);
+            Teacher teacher = teacherService.queryOne(record1);
             if(teacher==null){
                 return null;
             }
