@@ -35,6 +35,16 @@
                     <span>课程列表</span>
                 </li>
             </ul>
+
+        </li>
+        <li>
+            <span>班级信息管理</span>
+            <ul>
+                <li data-options="attributes:{'url':'${request.contextPath}/rest/page/classInfo'}">
+                    <span>班级列表</span>
+                </li>
+            </ul>
+
         </li>
     </ul>
 </div>

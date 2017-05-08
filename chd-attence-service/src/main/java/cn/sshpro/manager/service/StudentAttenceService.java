@@ -25,10 +25,31 @@ public class StudentAttenceService extends BaseService<StudentAttence>{
     @Autowired
     private TeacherAttenceMapper teacherAttenceMapper;
     
-    public TeacherAttence getByStudentId(Long studentId){
+
+    public List<StudentAttenceVO> listHistory(Long studentId) {
+        return studentAttenceMapper.listHistory(studentId);
+    }
+
+    /**
+     * 查看是否需要考勤,如果考勤状态为缺勤,则不用获取教师端考勤信息
+     * @return
+     */
+    public StudentAttence checkAttence(Long studentId, Long courseId){
         Example example = new Example(StudentAttence.class);
-        example.createCriteria().andEqualTo("studentId",studentId);
-        example.createCriteria().andEqualTo("state",1L);
+        example.createCriteria().andEqualTo("studentId",studentId).andEqualTo("courseId",courseId);
+        example.setOrderByClause("created desc");
+        List<StudentAttence> studentAttences = studentAttenceMapper.selectByExample(example);
+        if(CollectionUtils.isNotEmpty(studentAttences)){
+            StudentAttence studentAttence = studentAttences.get(0);
+            return studentAttence;
+        }
+        return null;
+    }
+
+    public TeacherAttence getByStudentIdAndCourseId(Long studentId, Long courseId) {
+        Example example = new Example(StudentAttence.class);
+        example.createCriteria().andEqualTo("studentId",studentId).andEqualTo("courseId",courseId)
+        .andEqualTo("state",1L);
         example.setOrderByClause("created desc");
         List<StudentAttence> studentAttences = studentAttenceMapper.selectByExample(example);
         if(CollectionUtils.isNotEmpty(studentAttences)){
@@ -39,9 +60,5 @@ public class StudentAttenceService extends BaseService<StudentAttence>{
             return teacherAttence;
         }
         return null;
-    }
-
-    public List<StudentAttenceVO> listHistory(Long studentId) {
-        return studentAttenceMapper.listHistory(studentId);
     }
 }

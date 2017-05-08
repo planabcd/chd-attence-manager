@@ -51,6 +51,7 @@ public class ClassInfoController {
         }
     }
 
+
     @RequestMapping(value="/{id}",method= RequestMethod.GET)
     public String view(@PathVariable("id")Long id, Model model){
         try {
@@ -66,6 +67,17 @@ public class ClassInfoController {
         return "layout/error";
     }
 
+    @RequestMapping(value="bindClassId",method= RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<Void> bindClassId(String courseId,String classId){
+        try {
+            classInfoService.bindClassId(courseId,classId);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        } catch (Exception e) {
+            logger.error("课程绑定班级信息失败",e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 
 
     @RequestMapping("/queryByTeacherId")
@@ -74,4 +86,17 @@ public class ClassInfoController {
         List<ClassInfo> classInfos = classInfoService.queryByTeacherId(teacherId);
         return classInfos;
     }
+
+    /**
+     * 通过课程id查询班级信息
+     * @param courseId
+     * @return
+     */
+    @RequestMapping("/queryByCourseId")
+    @ResponseBody
+    public List<ClassInfo> queryByCourseId(@RequestParam("courseId")Long courseId){
+        return classInfoService.queryByCourseId(courseId);
+    }
+
+
 }

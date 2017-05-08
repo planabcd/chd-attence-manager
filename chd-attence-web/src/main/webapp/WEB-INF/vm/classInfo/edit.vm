@@ -1,34 +1,34 @@
 #set($layout="layout/bootstrap.vm")
 <body>
-<div class="easyui-panel" data-option="fit:true" title="编辑教师信息" style="padding:10px" >
+<div class="easyui-panel" data-option="fit:true" title="编辑班级信息" style="padding:10px" >
     <!-- 自定义 -->
     <div class="container" style="margin-left: 10px">
         <div class="row">
             <div class="col-md-10 col-sm-10 col-xs-10">
                 <form id="edit_form" method="post" class="form-horizontal" role="form">
-                    <input type="hidden" name="id" value="$!{teacher.id}" />
+                    <input type="hidden" name="id" value="$!{classInfo.id}">
                     <div class="form-group">
-                        <label for="teacherId" class="col-sm-2 col-md-2 control-label">工号</label>
+                        <label for="classId" class="col-sm-2 col-md-2 control-label">班级</label>
                         <div class="col-sm-10">
-                            <input value="$!{teacher.teacherId}" type="text" name="teacherId" id="teacherId" class="form-control">
+                            <input value="$!{classInfo.classId}" type="text" name="classId" id="classId" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 col-md-2 control-label" >姓名</label>
+                        <label for="academy" class="col-sm-2 col-md-2 control-label" >学院</label>
                         <div class="col-sm-10">
-                            <input value="$!{teacher.name}" type="text" name="name" id="name" class="form-control">
+                            <input value="$!{classInfo.academy}" type="text" name="academy" id="academy" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="academy" class="col-sm-2 col-md-2 col-lg-2 control-label">学院</label>
+                        <label for="marjor" class="col-sm-2 col-md-2 col-lg-2 control-label">专业</label>
                         <div class="col-sm-10">
-                            <input value="$!{teacher.academy}" type="text" name="academy" id="academy" class="form-control"  >
+                            <input value="$!{classInfo.marjor}" type="text" name="marjor" id="marjor" class="form-control"  >
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="password" class="col-sm-2 col-md-2 control-label">密码</label>
+                        <label for="grade" class="col-sm-2 col-md-2 control-label">年级</label>
                         <div class="col-sm-10">
-                            <input value="$!{teacher.password}" type="text" name="password" id="password" class="form-control">
+                            <input value="$!{classInfo.grade}" type="text" name="grade" id="grade" class="form-control">
                         </div>
                     </div>
 
@@ -47,7 +47,7 @@
      * 提交表单
      */
     function editForm(){
-        var url = "${request.contextPath}/rest/teacher";
+        var url = "${request.contextPath}/rest/classInfo";
         $.ajax({
             url : url,
             type: "POST",
@@ -56,7 +56,7 @@
             statusCode : {
                 201 :  function(){
                     alert("操作成功");
-                    window.location.href = "${request.contextPath}/rest/page/teacher";
+                    window.location.href = "${request.contextPath}/rest/page/classInfo";
                 },
                 500 : function(){
                     alert("服务器繁忙");

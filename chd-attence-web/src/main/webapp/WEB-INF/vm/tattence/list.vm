@@ -30,7 +30,13 @@
         method:"GET",
         columns:[[
             {field:'id',title:'考勤编号',checkbox:true},
-            {field:'state',title:'考勤状态'},
+            {field:'state',title:'考勤状态',formatter:function(val){
+                if(val==1){
+                    return "<b style='color: #00ff00;'>正在考勤</b>";
+                }else if(val==2){
+                    return "已结束";
+                }
+            }},
             {field:'courseId',title:'课程编号'},
             {field:'classId',title:'班级编号'},
             {field:'teacherName',title:'教师姓名'},

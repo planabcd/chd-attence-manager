@@ -30,7 +30,15 @@
         method:"GET",
         columns:[[
             {field:'id',title:'考勤编号',checkbox:true},
-            {field:'state',title:'考勤状态'},
+            {field:'state',title:'考勤状态',formatter:function(val){
+                if(val==1){
+                    return "待打卡";
+                }else if(val==2){
+                    return "已打卡";
+                }else if(val==3){
+                    return "<b style='color: #ff0000;'>缺勤</b>";
+                }
+            }},
             {field:'studentId',title:'学号'},
             {field:'name',title:'学生姓名'},
             {field:'courseId',title:'课程编号'},

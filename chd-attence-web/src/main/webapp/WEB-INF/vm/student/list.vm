@@ -30,8 +30,8 @@
             handler: function () {
                 var row = $("#dg").datagrid('getSelections');
                 if(row.length==1){
-                    var id=row[0].id;
-                    window.location.href="${request.contextPath}/rest/sattence/detail/"+id;
+                    var stuId=row[0].stuId;
+                    window.location.href="${request.contextPath}/rest/sattence/detail/"+stuId;
                 }else{
                     alert("请选择一行");
                 }

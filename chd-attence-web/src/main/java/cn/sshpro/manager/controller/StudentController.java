@@ -15,9 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by think on 2017/4/10
@@ -85,27 +83,27 @@ public class StudentController {
         if(CollectionUtils.isNotEmpty(students)){
             return students.get(0);
         }
-        return new Student();
+        return null;
     }
 
     @RequestMapping("/bind")
     @ResponseBody
-    public Map<String,Object> bind(@RequestParam("studentId")Long studentId, @RequestParam("pwd")String pwd,@RequestParam("macAddress")String macAddress){
+    public Student bind(@RequestParam("studentId")Long studentId,@RequestParam("grade")String grade,@RequestParam("classId")Long classId,@RequestParam("macAddress")String macAddress){
+        if(StringUtils.isBlank(macAddress)){
+            return null;
+        }
         Student record = new Student();
         record.setStuId(studentId);
-        record.setPassword(pwd);
+        record.setGrade(grade);
+        record.setClassId(classId);
         List<Student> students = studentService.queryListByWhere(record);
-        HashMap<String, Object> result = new HashMap<String, Object>();
-        if(CollectionUtils.isNotEmpty(students) && StringUtils.isNotBlank(macAddress)){
+        if(CollectionUtils.isNotEmpty(students)){
             Student student = students.get(0);
             student.setMacAddress(macAddress);
             studentService.updateSelective(student);
-            result.put("student", student);
-            result.put("success",true);
-            return result;
+            return student;
         }
-        result.put("success",false);
-        return result;
+        return null;
     }
 
 }

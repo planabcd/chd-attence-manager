@@ -15,14 +15,34 @@
             iconCls: 'icon-edit',
             handler: function () {
                 var row = $("#dg").datagrid('getSelections');
+                if (row.length == 1) {
+                    var id = row[0].id;
+                    window.location.href = "${request.contextPath}/rest/course/" + id;
+                } else {
+                    alert("请选择一行");
+                }
+            }
+        }
+            , {
+            text: '分配班级',
+            iconCls: 'icon-cut',
+            handler: function () {
+                var row = $("#dg").datagrid('getSelections');
                 if(row.length==1){
-                    var id=row[0].id;
-                    window.location.href="${request.contextPath}/rest/course/"+id;
+                    var courseId=row[0].id;
+                    var courseName = row[0].name;
+                    //TODO
+                    var classId = prompt("请输入班级:","2013240402");
+                    if (classId){
+                        var con = confirm("分配班级:"+classId+"\n课程:"+courseName);
+                        if(con){
+                            bindClass(courseId,classId);
+                        }
+                    }
                 }else{
                     alert("请选择一行");
                 }
             }
-
         }
     ];
     $('#dg').datagrid({
@@ -44,5 +64,29 @@
         pageSize: 10,
         pageList: [10,25,50]
     });
+
+    /**
+     * 为课程绑定班级信息
+     * @param courseId
+     * @param classId
+     */
+    function bindClass(courseId,classId){
+        var url = "${request.contextPath}/rest/classInfo/bindClassId";
+        $.ajax({
+            url : url,
+            type: "POST",
+            data:{"courseId":courseId,"classId":classId},
+            dataType:"json",
+            statusCode : {
+                201 :  function(){
+                    alert("操作成功");
+                },
+                500 : function(){
+                    alert("服务器繁忙");
+                }
+            }
+        })
+    }
+
 </script>
 </body>

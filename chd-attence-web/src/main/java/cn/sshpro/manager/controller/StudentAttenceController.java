@@ -43,7 +43,7 @@ public class StudentAttenceController {
                 record = new StudentAttence();
                 record.setStudentId(studentId);
             }
-            PageInfo<StudentAttence> pageInfo = studentAttenceService.queryPageListByWhere(page, row, null);
+            PageInfo<StudentAttence> pageInfo = studentAttenceService.queryPageListByWhere(page, row, record);
             EasyUIResult easyUIResult = new EasyUIResult(pageInfo.getTotal(), pageInfo.getList());
             return ResponseEntity.ok(easyUIResult);
         } catch (Exception e) {
@@ -104,9 +104,17 @@ public class StudentAttenceController {
 
     @RequestMapping(value="/call")
     @ResponseBody
-    public TeacherAttence call(@RequestParam("studentId")Long studentId){
-        return studentAttenceService.getByStudentId(studentId);
+    public TeacherAttence call(@RequestParam("studentId")Long studentId,@RequestParam("courseId")Long courseId){
+        return studentAttenceService.getByStudentIdAndCourseId(studentId,courseId);
     }
+
+    @RequestMapping(value="/checkAttence")
+    @ResponseBody
+    public StudentAttence checkAttence(@RequestParam("studentId")Long studentId,@RequestParam("courseId")Long courseId){
+        return studentAttenceService.checkAttence(studentId,courseId);
+    }
+
+
 
     @RequestMapping(value="/history")
     @ResponseBody

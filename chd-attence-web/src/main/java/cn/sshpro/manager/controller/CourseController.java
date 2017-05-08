@@ -74,12 +74,12 @@ public class CourseController {
         return courses;
     }
 
-    /*@RequestMapping("/queryByTeacherId")
+    @RequestMapping("/queryByTeacherId")
     @ResponseBody
     public List<Course> queryByTeacherId(@RequestParam("teacherId")Long teacherId){
         Course record = new Course();
         record.setTeacherId(teacherId);
         List<Course> courses = courseService.queryListByWhere(record);
         return courses;
-    }*/
+    }
 }

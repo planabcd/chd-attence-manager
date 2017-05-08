@@ -10,4 +10,20 @@
 		ORDER BY updated DESC
 	</select>
 
+	<select id="queryByCourseId" parameterType="java.lang.Long" resultType="ClassInfo">
+		SELECT cl.*,cl.class_id classId FROM course_class cc LEFT JOIN class_info cl
+		ON cl.class_id = cc.class_id
+		WHERE cc.course_id = #{courseId}
+		ORDER BY updated DESC
+	</select>
+
+	<select id="queryByCourseIdAndClassId" resultType="ClassInfo">
+		SELECT cc.* FROM course_class cc
+		WHERE cc.course_id = #{courseId}
+		AND cc.class_id = #{classId}
+	</select>
+
+	<insert id="bindCourseIdAndClassId">
+		INSERT INTO course_class(course_id,class_id,created,updated) VALUES (#{courseId},#{classId},now(),now())
+	</insert>
 </mapper>

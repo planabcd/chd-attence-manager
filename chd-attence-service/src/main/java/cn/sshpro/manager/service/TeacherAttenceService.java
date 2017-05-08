@@ -37,10 +37,8 @@ public class TeacherAttenceService extends BaseService<TeacherAttence>{
 
     public List<TeacherAttence> getCall(Long courseId,Long classId,Long teacherId,Long state){
         Example example = new Example(TeacherAttence.class);
-        example.createCriteria().andEqualTo("courseId",courseId);
-        example.createCriteria().andEqualTo("classId",classId);
-        example.createCriteria().andEqualTo("teacherId",teacherId);
-        example.createCriteria().andEqualTo("state",state);
+        example.createCriteria().andEqualTo("courseId",courseId).andEqualTo("classId",classId)
+        .andEqualTo("teacherId",teacherId).andEqualTo("state",state);
         example.setOrderByClause("created desc");
         return teacherAttenceMapper.selectByExample(example);
     }

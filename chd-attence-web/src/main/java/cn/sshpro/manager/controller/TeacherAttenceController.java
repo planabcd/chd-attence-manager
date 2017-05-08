@@ -50,8 +50,8 @@ public class TeacherAttenceController {
     }
 
     @RequestMapping(value="/detail/{teacherId}",method= RequestMethod.GET)
-    public String detail(@PathVariable("teacherId")Long studentId,Model model){
-        model.addAttribute("teacherId",studentId);
+    public String detail(@PathVariable("teacherId")Long teacherId,Model model){
+        model.addAttribute("teacherId",teacherId);
         return "tattence/list";
     }
 

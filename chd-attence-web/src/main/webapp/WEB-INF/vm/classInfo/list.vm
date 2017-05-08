@@ -1,5 +1,5 @@
 <body>
-<div class="easyui-panel" data-option="fit:true" title="教师信息管理" style="padding:10px" >
+<div class="easyui-panel" data-option="fit:true" title="班级信息管理" style="padding:10px" >
     <table id="dg"></table>
 </div>
 <script type="text/javascript">
@@ -8,7 +8,7 @@
             text: '新增',
             iconCls: 'icon-add',
             handler: function () {
-                window.location.href="${request.contextPath}/rest/teacher/0"
+                window.location.href="${request.contextPath}/rest/classInfo/0"
             }
         }, {
             text: '修改',
@@ -17,20 +17,7 @@
                 var row = $("#dg").datagrid('getSelections');
                 if(row.length==1){
                     var id=row[0].id;
-                    window.location.href="${request.contextPath}/rest/teacher/"+id;
-                }else{
-                    alert("请选择一行");
-                }
-            }
-        },
-        {
-            text: ' 查看考勤',
-            iconCls: 'icon-edit',
-            handler: function () {
-                var row = $("#dg").datagrid('getSelections');
-                if(row.length==1){
-                    var teacherId=row[0].teacherId;
-                    window.location.href="${request.contextPath}/rest/tattence/detail/"+teacherId;
+                    window.location.href="${request.contextPath}/rest/classInfo/"+id;
                 }else{
                     alert("请选择一行");
                 }
@@ -39,13 +26,14 @@
         }
     ];
     $('#dg').datagrid({
-        url:"${request.contextPath}/rest/teacher",
+        url:"${request.contextPath}/rest/classInfo",
         method:"GET",
         columns:[[
-            {field:'id',title:'工号',checkbox:true},
-            {field:'teacherId',title:'教师工号'},
-            {field:'name',title:'姓名'},
+            {field:'id',title:'编号',checkbox:true},
+            {field:'classId',title:'班级'},
             {field:'academy',title:'学院'},
+            {field:'marjor',title:'专业'},
+            {field:'grade',title:'年级'},
             {field:'created',title:'创建时间',formatter:formatDatebox},
             {field:'updated',title:'修改时间',formatter:formatDatebox}
         ]] ,
