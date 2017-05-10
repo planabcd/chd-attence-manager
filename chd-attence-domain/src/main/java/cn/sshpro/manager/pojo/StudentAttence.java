@@ -14,6 +14,15 @@ public class StudentAttence extends BaseModel{
     private Long courseId;
     private String wifiTop5;
     private Long teacherAttenceId;
+    private String remark;
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
 
     public Long getTeacherAttenceId() {
         return teacherAttenceId;

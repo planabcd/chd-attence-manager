@@ -8,6 +8,7 @@ import cn.sshpro.manager.service.StudentAttenceService;
 import cn.sshpro.manager.service.TeacherAttenceService;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.List;
 
 /**
@@ -121,6 +124,34 @@ public class StudentAttenceController {
     public List<StudentAttenceVO> listHistory(@RequestParam("studentId")Long studentId){
         return studentAttenceService.listHistory(studentId);
     }
+
+    /**
+     * 申请考勤异常
+     */
+    @RequestMapping(value="/exceptionCall")
+    @ResponseBody
+    public StudentAttence exceptionCall(@RequestParam("studentAttenceId")Long studentAttenceId,@RequestParam("remark")String remark){
+        if(StringUtils.isBlank(remark)){
+            return null;
+        }
+        try {
+            remark = URLDecoder.decode(remark, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            logger.error("获取异常考勤申请理由解码错误",e);
+            return null;
+        }
+
+        StudentAttence studentAttence = studentAttenceService.queryById(studentAttenceId);
+        if(studentAttence!=null && studentAttence.getState()==3 && StringUtils.isBlank(studentAttence.getRemark())){
+            StudentAttence record = new StudentAttence();
+            record.setId(studentAttenceId);
+            record.setRemark(remark);
+            studentAttenceService.updateSelective(record);
+            return studentAttence;
+        }
+        return null;
+    }
+
 
 
     @RequestMapping(value="/doCall")

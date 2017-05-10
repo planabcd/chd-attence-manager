@@ -88,14 +88,12 @@ public class StudentController {
 
     @RequestMapping("/bind")
     @ResponseBody
-    public Student bind(@RequestParam("studentId")Long studentId,@RequestParam("grade")String grade,@RequestParam("classId")Long classId,@RequestParam("macAddress")String macAddress){
+    public Student bind(@RequestParam("studentId")Long studentId,@RequestParam("macAddress")String macAddress){
         if(StringUtils.isBlank(macAddress)){
             return null;
         }
         Student record = new Student();
         record.setStuId(studentId);
-        record.setGrade(grade);
-        record.setClassId(classId);
         List<Student> students = studentService.queryListByWhere(record);
         if(CollectionUtils.isNotEmpty(students)){
             Student student = students.get(0);

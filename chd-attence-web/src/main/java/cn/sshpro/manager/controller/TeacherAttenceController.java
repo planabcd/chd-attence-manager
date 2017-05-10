@@ -1,10 +1,12 @@
 package cn.sshpro.manager.controller;
 
-import cn.sshpro.manager.pojo.*;
+import cn.sshpro.manager.pojo.EasyUIResult;
+import cn.sshpro.manager.pojo.StudentAttence;
+import cn.sshpro.manager.pojo.TeacherAttence;
+import cn.sshpro.manager.pojo.TeacherAttenceVO;
 import cn.sshpro.manager.service.StudentAttenceService;
 import cn.sshpro.manager.service.TeacherAttenceService;
 import com.github.pagehelper.PageInfo;
-import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -113,22 +115,22 @@ public class TeacherAttenceController {
 
     /**
      * 为考勤失败的同学提供考勤
-     * @param teacherAttenceId
-     * @param studentId
      * @return
      */
     @RequestMapping(value="/specialCall")
     @ResponseBody
-    public StudentAttence cancelCall(@RequestParam("teacherAttenceId")Long teacherAttenceId,@RequestParam("studentId")Long studentId){
-        StudentAttence studentAttence = new StudentAttence();
-        studentAttence.setTeacherAttenceId(teacherAttenceId);
-        studentAttence.setStudentId(studentId);
-        List<StudentAttence> studentAttences = studentAttenceService.queryListByWhere(studentAttence);
-        if(CollectionUtils.isNotEmpty(studentAttences)){
-            StudentAttence record = studentAttences.get(0);
-            record.setState(2L);
-            studentAttenceService.updateSelective(record);
-            return studentAttence;
+    public StudentAttence specialCall(@RequestParam("studentAttenceId")Long studentAttenceId){
+        StudentAttence studentAttence = studentAttenceService.queryById(studentAttenceId);
+        if(studentAttence!=null){
+            Long state = studentAttence.getState();
+            if(state==3){
+                StudentAttence record = new StudentAttence();
+                record.setId(studentAttenceId);
+                record.setState(2L);
+                studentAttenceService.updateSelective(record);
+                return studentAttence;
+            }
+            return null;
         }
         return null;
     }
