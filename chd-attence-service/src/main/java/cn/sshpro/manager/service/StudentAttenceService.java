@@ -2,12 +2,10 @@ package cn.sshpro.manager.service;
 
 import cn.sshpro.manager.mapper.StudentAttenceMapper;
 import cn.sshpro.manager.mapper.TeacherAttenceMapper;
-import cn.sshpro.manager.pojo.Course;
-import cn.sshpro.manager.pojo.StudentAttence;
-import cn.sshpro.manager.pojo.StudentAttenceVO;
-import cn.sshpro.manager.pojo.TeacherAttence;
+import cn.sshpro.manager.pojo.*;
 import com.github.abel533.entity.Example;
 import org.apache.commons.collections.CollectionUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +22,9 @@ public class StudentAttenceService extends BaseService<StudentAttence>{
 
     @Autowired
     private TeacherAttenceMapper teacherAttenceMapper;
+
+    @Autowired
+    private TeacherService teacherService;
     
 
     public List<StudentAttenceVO> listHistory(Long studentId) {
@@ -46,7 +47,7 @@ public class StudentAttenceService extends BaseService<StudentAttence>{
         return null;
     }
 
-    public TeacherAttence getByStudentIdAndCourseId(Long studentId, Long courseId) {
+    public TeacherAttenceVO getByStudentIdAndCourseId(Long studentId, Long courseId) {
         Example example = new Example(StudentAttence.class);
         example.createCriteria().andEqualTo("studentId",studentId).andEqualTo("courseId",courseId)
         .andEqualTo("state",1L);
@@ -57,7 +58,19 @@ public class StudentAttenceService extends BaseService<StudentAttence>{
             TeacherAttence record = new TeacherAttence();
             record.setId(teacherAttenceId);
             TeacherAttence teacherAttence = teacherAttenceMapper.selectOne(record);
-            return teacherAttence;
+            if(teacherAttence==null){
+                return null;
+            }
+            TeacherAttenceVO teacherAttenceVO = new TeacherAttenceVO();
+            BeanUtils.copyProperties(teacherAttence,teacherAttenceVO);
+            Long teacherId = teacherAttence.getTeacherId();
+            Teacher record2 = new Teacher();
+            record2.setTeacherId(teacherId);
+            Teacher teacher = teacherService.queryOne(record2);
+            if(teacher!=null){
+                teacherAttenceVO.setMacAddress(teacher.getMacAddress());
+            }
+            return teacherAttenceVO;
         }
         return null;
     }

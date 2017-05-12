@@ -11,6 +11,15 @@ public class Teacher extends BaseModel {
     private String academy;
     private String password;
     private Long teacherId;
+    private String macAddress;
+
+    public String getMacAddress() {
+        return macAddress;
+    }
+
+    public void setMacAddress(String macAddress) {
+        this.macAddress = macAddress;
+    }
 
     public Long getTeacherId() {
         return teacherId;

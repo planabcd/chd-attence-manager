@@ -1,16 +1,14 @@
 package cn.sshpro.manager.controller;
 
-import cn.sshpro.manager.pojo.EasyUIResult;
-import cn.sshpro.manager.pojo.StudentAttence;
-import cn.sshpro.manager.pojo.StudentAttenceVO;
-import cn.sshpro.manager.pojo.TeacherAttence;
+import cn.sshpro.manager.pojo.*;
+import cn.sshpro.manager.service.CourseService;
 import cn.sshpro.manager.service.StudentAttenceService;
 import cn.sshpro.manager.service.TeacherAttenceService;
 import com.github.pagehelper.PageInfo;
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -33,6 +31,9 @@ public class StudentAttenceController {
 
     @Resource
     private TeacherAttenceService teacherAttenceService;
+
+    @Resource
+    private CourseService courseService;
 
     private Logger logger = LoggerFactory.getLogger(StudentAttenceController.class);
 
@@ -107,7 +108,7 @@ public class StudentAttenceController {
 
     @RequestMapping(value="/call")
     @ResponseBody
-    public TeacherAttence call(@RequestParam("studentId")Long studentId,@RequestParam("courseId")Long courseId){
+    public TeacherAttenceVO call(@RequestParam("studentId")Long studentId, @RequestParam("courseId")Long courseId){
         return studentAttenceService.getByStudentIdAndCourseId(studentId,courseId);
     }
 
@@ -156,16 +157,26 @@ public class StudentAttenceController {
 
     @RequestMapping(value="/doCall")
     @ResponseBody
-    public StudentAttence doCall(@RequestParam("teacherAttenceId")Long teacherAttenceId,@RequestParam("studentId")Long studentId){
+    public StudentAttenceVO doCall(@RequestParam("teacherAttenceId")Long teacherAttenceId,@RequestParam("studentId")Long studentId){
         StudentAttence record = new StudentAttence();
         record.setStudentId(studentId);
         record.setTeacherAttenceId(teacherAttenceId);
-        List<StudentAttence> studentAttences = studentAttenceService.queryListByWhere(record);
-        if(CollectionUtils.isNotEmpty(studentAttences)){
-            StudentAttence studentAttence = studentAttences.get(0);
-            studentAttence.setState(2L);
-            studentAttenceService.updateSelective(studentAttence);
-            return studentAttence;
+        StudentAttence studentAttence = studentAttenceService.queryOne(record);
+        if(studentAttence!=null){
+            StudentAttenceVO studentAttenceVO = new StudentAttenceVO();
+            BeanUtils.copyProperties(studentAttence,studentAttenceVO);
+            Course course = courseService.queryById(studentAttence.getCourseId());
+            if(course!=null){
+                studentAttenceVO.setCourseName(course.getName());
+            }
+
+            Long state = studentAttence.getState();
+            if(state==1){
+                studentAttence.setState(2L);
+                studentAttenceService.updateSelective(studentAttence);
+                studentAttenceVO.setState(2L);
+            }
+            return studentAttenceVO;
         }
         return null;
     }

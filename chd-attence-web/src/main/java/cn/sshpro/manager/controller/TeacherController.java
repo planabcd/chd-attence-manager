@@ -5,6 +5,7 @@ import cn.sshpro.manager.pojo.Teacher;
 import cn.sshpro.manager.service.TeacherService;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -83,5 +84,30 @@ public class TeacherController {
             logger.error("查询编辑教师信息失败",e);
         }
         return "layout/error";
+    }
+
+
+    /**
+     * 绑定mac地址
+     * @param teacherId
+     * @param macAddress
+     * @return
+     */
+    @RequestMapping("/bind")
+    @ResponseBody
+    public Teacher bind(@RequestParam("teacherId")Long teacherId, @RequestParam("macAddress")String macAddress){
+        if(StringUtils.isBlank(macAddress)){
+            return null;
+        }
+        Teacher record = new Teacher();
+        record.setTeacherId(teacherId);
+        List<Teacher> teachers = teacherService.queryListByWhere(record);
+        if(CollectionUtils.isNotEmpty(teachers)){
+            Teacher teacher = teachers.get(0);
+            teacher.setMacAddress(macAddress);
+            teacherService.updateSelective(teacher);
+            return teacher;
+        }
+        return null;
     }
 }
