@@ -10,7 +10,7 @@
 		LEFT JOIN course c
 		on c.id = sa.course_id
 		WHERE sa.student_id = #{studentId}
-		ORDER BY updated DESC
+		ORDER BY created DESC
 	</select>
 
 </mapper>

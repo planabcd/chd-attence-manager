@@ -74,4 +74,12 @@ public class StudentAttenceService extends BaseService<StudentAttence>{
         }
         return null;
     }
+
+    public List<StudentAttence> listOrderByStudentId(Long teacherAttenceId) {
+        Example example = new Example(StudentAttence.class);
+        example.createCriteria().andEqualTo("teacherAttenceId",teacherAttenceId);
+        example.setOrderByClause("studentId asc");
+        List<StudentAttence> studentAttences = studentAttenceMapper.selectByExample(example);
+        return studentAttences;
+    }
 }

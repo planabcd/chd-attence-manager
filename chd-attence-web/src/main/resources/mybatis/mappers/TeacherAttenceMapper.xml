@@ -23,7 +23,7 @@
 		LEFT JOIN course c
 		on ta.course_id = c.id
 		WHERE ta.teacher_id = #{teacherId}
-		ORDER BY updated DESC
+		ORDER BY created DESC
 	</select>
 
 </mapper>

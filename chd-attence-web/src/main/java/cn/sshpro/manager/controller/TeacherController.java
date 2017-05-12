@@ -110,4 +110,21 @@ public class TeacherController {
         }
         return null;
     }
+
+    /**
+     * 获取绑定的mac地址
+     * @param teacherId
+     * @return
+     */
+    @RequestMapping("/getMac")
+    @ResponseBody
+    public Teacher getMac(@RequestParam("teacherId")Long teacherId){
+        Teacher record = new Teacher();
+        record.setTeacherId(teacherId);
+        List<Teacher> teachers = teacherService.queryListByWhere(record);
+        if(CollectionUtils.isNotEmpty(teachers)){
+            return teachers.get(0);
+        }
+        return null;
+    }
 }
