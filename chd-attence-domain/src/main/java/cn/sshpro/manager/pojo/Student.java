@@ -1,5 +1,7 @@
 package cn.sshpro.manager.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Table;
 
 /**
@@ -8,14 +10,25 @@ import javax.persistence.Table;
 @Table(name="student")
 public class Student extends BaseModel {
 
+
     private String name;
     private String academy;
     private String major;
     private Long stuId;
     private Long classId;
     private String grade;
+    @JsonIgnore
     private String password;
     private String macAddress;
+    private String voice;
+
+    public String getVoice() {
+        return voice;
+    }
+
+    public void setVoice(String voice) {
+        this.voice = voice;
+    }
 
     public String getMacAddress() {
         return macAddress;

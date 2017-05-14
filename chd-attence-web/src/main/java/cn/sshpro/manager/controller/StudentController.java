@@ -86,7 +86,7 @@ public class StudentController {
         return null;
     }
 
-    @RequestMapping("/bind")
+    @RequestMapping("/bindMacAddress")
     @ResponseBody
     public Student bind(@RequestParam("studentId")Long studentId,@RequestParam("macAddress")String macAddress){
         if(StringUtils.isBlank(macAddress)){
@@ -103,5 +103,32 @@ public class StudentController {
         }
         return null;
     }
+
+    @RequestMapping("/bindVoice")
+    @ResponseBody
+    public Student bindVoice(@RequestParam("studentId")Long studentId,@RequestParam("voice")String voice){
+        if(StringUtils.isBlank(voice)){
+            return null;
+        }
+        Student record = new Student();
+        record.setStuId(studentId);
+        Student student = studentService.queryOne(record);
+        if(student!=null){
+            student.setVoice(voice);
+            studentService.updateSelective(student);
+            return student;
+        }
+        return null;
+    }
+
+    @RequestMapping("/checkStudent")
+    @ResponseBody
+    public Student voiceLogin(@RequestParam("studentId")Long studentId){
+        Student record = new Student();
+        record.setStuId(studentId);
+        Student student = studentService.queryOne(record);
+        return student;
+    }
+
 
 }

@@ -93,7 +93,7 @@ public class TeacherController {
      * @param macAddress
      * @return
      */
-    @RequestMapping("/bind")
+    @RequestMapping("/bindMacAddress")
     @ResponseBody
     public Teacher bind(@RequestParam("teacherId")Long teacherId, @RequestParam("macAddress")String macAddress){
         if(StringUtils.isBlank(macAddress)){
